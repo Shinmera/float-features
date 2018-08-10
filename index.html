@@ -1,0 +1,179 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Float Features</title> <style>html body{margin:0 auto 0 auto;padding:20px;max-width:1024px;font-family:sans-serif;font-size:14pt;overflow-y:scroll;}html body a{text-decoration:none;}html body a[href]{color:#0055AA;}html body a[href]:hover{color:#0088EE;}html body pre{background:#FAFAFA;border:1px solid #DDDDDD;padding:0.75em;overflow-x:auto;}html body pre >code a[href]{color:#223388;}article.system h1,article.system h2,article.system h3,article.system h4,article.system h5,article.system h6{margin:0.2em 0 0.1em 0;text-indent:1em;}article.system >header{text-align:center;}article.system >header img.logo{display:block;margin:auto;max-height:170px;}article.system >header h1{display:inline-block;text-indent:0;font-size:2.5em;}article.system >header .version{vertical-align:bottom;}article.system >header .languages{margin-top:-0.5em;text-transform:capitalize;}article.system >header .description{margin:0;}article.system >header .pages{margin-top:0.5em;font-size:1.2em;text-transform:capitalize;}article.system >header .pages a{display:inline-block;padding:0 0.2em;}article.system >section{margin:1em 0 1em 0;}article.system #index >ul{list-style:none;margin:0;padding:0;}article.system .row label{display:inline-block;min-width:6em;}article.system #system .row{display:flex;}article.system #system #dependencies{display:inline;margin:0;padding:0;}article.system #system #dependencies li{display:inline;padding:0 0.2em;}article.definition{margin:1em 0 0 0;}article.definition >header h1,article.definition >header h2,article.definition >header h3,article.definition >header h4,article.definition >header h5,article.definition >header h6{text-indent:0;display:inline-block;}article.definition >header ul{display:inline-block;list-style:none;margin:0;padding:0;}article.definition >header ul li{display:inline-block;padding:0 0.2em 0 0;}article.definition >header .visibility{display:none;}article.definition >header .visibility,article.definition >header .type{text-transform:lowercase;}article.definition >header .source-link{visibility:hidden;float:right;}article.definition >header .source-link:after{visibility:visible;content:"[SRC]";}article.definition .docstring{margin:0 0 0 1em;}article.definition .docstring pre{font-size:0.8em;white-space:pre-wrap;}.definition.package >header ul.nicknames{display:inline-block;list-style:none;margin:0;padding:0 0 0 1em;}.definition.package >header ul.nicknames li{display:inline;}.definition.package >header ul.nicknames:before{content:"(";}.definition.package >header ul.nicknames:after{content:")";}.definition.package ul.definitions{margin:0;list-style:none;padding:0 0 0 0.5em;}.definition.callable >header .name:before,.definition.type >header .name:before{content:"(";font-weight:normal;}.definition.callable >header .arguments:after,.definition.type >header .arguments:after{content:")";}.definition li>mark{background:none;border-left:0.3em solid #0088EE;padding-left:0.3em;display:block;}</style> </head> <body> <article class="system"> <header>  <h1>float-features</h1> <span class="version">1.0.0</span> <nav class="languages">  <a href="index.html">English</a>  </nav> <p class="description">A portability library for IEEE float features not covered by the CL standard.</p> <nav class="pages">  <a href="index.html">float features</a>  </nav> </header> <section id="documentation"><h2>About Float-Features</h2> <p>This is a wrapper library for IEEE floating point features not present in the Common Lisp standard.</p> <h2>Implementation Support</h2> <p>The following implementations are currently partially or entirely supported:</p> <ul> <li>abcl</li> <li>allegro</li> <li>ccl</li> <li>cmucl</li> <li>ecl</li> <li>mkcl</li> <li>sbcl</li> </ul> </section>  <section id="system"> <h2>System Information</h2>  <div class="row"> <label for="version">Version:</label> <a id="version">1.0.0</a> </div>   <div class="row"> <label for="dependencies">Dependencies:</label> <ul id="dependencies"><li><a class="external" href="https://github.com/Shinmera/documentation-utils">documentation-utils</a></li></ul> </div>   <div class="row"> <label for="author">Author:</label> <a id="author" href="mailto:shinmera@tymoon.eu">Nicolas Hafner</a> </div>   <div class="row"> <label for="license">License:</label> <a id="license" href="https://github.com/Shinmera/float-features/blob/master/LICENSE">Artistic</a> </div>   <div class="row"> <label for="homepage">Homepage:</label> <a id="homepage" href="https://github.com/Shinmera/float-features">https://github.com/Shinmera/float-features</a> </div>  </section>  <section id="index"> <h2>Definition Index</h2> <ul> <li> <article class="definition package" id="PACKAGE FLOAT-FEATURES"> <header> <h3> <a href="#PACKAGE%20FLOAT-FEATURES">FLOAT-FEATURES</a> </h3> <ul class="nicknames"> <li>ORG.SHIRAKUMO.FLOAT-FEATURES</li> </ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L7">Source</a>  </header> <div class="docstring"><i>No documentation provided.</i></div> <ul class="definitions"> <li> <article class="definition constant" id="VARIABLE FLOAT-FEATURES:DOUBLE-FLOAT-NEGATIVE-INFINITY"> <header> <span class="visibility">EXTERNAL</span> <span class="type">CONSTANT</span> <h4 class="name"> <a href="#VARIABLE%20FLOAT-FEATURES%3ADOUBLE-FLOAT-NEGATIVE-INFINITY">DOUBLE-FLOAT-NEGATIVE-INFINITY</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"></ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L72">Source</a>  </header> <div class="docstring"><pre>The negative infinity for double-floats.
+
+Supported on:
+* ABCL
+* ALLEGRO
+* CCL
+* CMUCL
+* ECL
+* MKCL
+* SBCL
+
+Defaults to MOST-NEGATIVE-DOUBLE-FLOAT on unsupported implementations.</pre></div> </article> </li>  <li> <article class="definition constant" id="VARIABLE FLOAT-FEATURES:DOUBLE-FLOAT-POSITIVE-INFINITY"> <header> <span class="visibility">EXTERNAL</span> <span class="type">CONSTANT</span> <h4 class="name"> <a href="#VARIABLE%20FLOAT-FEATURES%3ADOUBLE-FLOAT-POSITIVE-INFINITY">DOUBLE-FLOAT-POSITIVE-INFINITY</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"></ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L61">Source</a>  </header> <div class="docstring"><pre>The positive infinity for double-floats.
+
+Supported on:
+* ABCL
+* ALLEGRO
+* CCL
+* CMUCL
+* ECL
+* MKCL
+* SBCL
+
+Defaults to MOST-POSITIVE-DOUBLE-FLOAT on unsupported implementations.</pre></div> </article> </li>  <li> <article class="definition constant" id="VARIABLE FLOAT-FEATURES:LONG-FLOAT-NEGATIVE-INFINITY"> <header> <span class="visibility">EXTERNAL</span> <span class="type">CONSTANT</span> <h4 class="name"> <a href="#VARIABLE%20FLOAT-FEATURES%3ALONG-FLOAT-NEGATIVE-INFINITY">LONG-FLOAT-NEGATIVE-INFINITY</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"></ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L91">Source</a>  </header> <div class="docstring"><pre>The negative infinity for long-floats.
+
+Supported on:
+* CMUCL
+* ECL
+* MKCL
+* SBCL
+
+Defaults to MOST-NEGATIVE-LONG-FLOAT on unsupported implementations.</pre></div> </article> </li>  <li> <article class="definition constant" id="VARIABLE FLOAT-FEATURES:LONG-FLOAT-POSITIVE-INFINITY"> <header> <span class="visibility">EXTERNAL</span> <span class="type">CONSTANT</span> <h4 class="name"> <a href="#VARIABLE%20FLOAT-FEATURES%3ALONG-FLOAT-POSITIVE-INFINITY">LONG-FLOAT-POSITIVE-INFINITY</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"></ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L83">Source</a>  </header> <div class="docstring"><pre>The positive infinity for long-floats.
+
+Supported on:
+* CMUCL
+* ECL
+* MKCL
+* SBCL
+
+Defaults to MOST-POSITIVE-LONG-FLOAT on unsupported implementations.</pre></div> </article> </li>  <li> <article class="definition constant" id="VARIABLE FLOAT-FEATURES:SHORT-FLOAT-NEGATIVE-INFINITY"> <header> <span class="visibility">EXTERNAL</span> <span class="type">CONSTANT</span> <h4 class="name"> <a href="#VARIABLE%20FLOAT-FEATURES%3ASHORT-FLOAT-NEGATIVE-INFINITY">SHORT-FLOAT-NEGATIVE-INFINITY</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"></ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L33">Source</a>  </header> <div class="docstring"><pre>The negative infinity for short-floats.
+
+Supported on:
+* CMUCL
+* ECL
+* MKCL
+* SBCL
+
+Defaults to MOST-NEGATIVE-SHORT-FLOAT on unsupported implementations.</pre></div> </article> </li>  <li> <article class="definition constant" id="VARIABLE FLOAT-FEATURES:SHORT-FLOAT-POSITIVE-INFINITY"> <header> <span class="visibility">EXTERNAL</span> <span class="type">CONSTANT</span> <h4 class="name"> <a href="#VARIABLE%20FLOAT-FEATURES%3ASHORT-FLOAT-POSITIVE-INFINITY">SHORT-FLOAT-POSITIVE-INFINITY</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"></ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L25">Source</a>  </header> <div class="docstring"><pre>The positive infinity for short-floats.
+
+Supported on:
+* CMUCL
+* ECL
+* MKCL
+* SBCL
+
+Defaults to MOST-POSITIVE-SHORT-FLOAT on unsupported implementations.</pre></div> </article> </li>  <li> <article class="definition constant" id="VARIABLE FLOAT-FEATURES:SINGLE-FLOAT-NEGATIVE-INFINITY"> <header> <span class="visibility">EXTERNAL</span> <span class="type">CONSTANT</span> <h4 class="name"> <a href="#VARIABLE%20FLOAT-FEATURES%3ASINGLE-FLOAT-NEGATIVE-INFINITY">SINGLE-FLOAT-NEGATIVE-INFINITY</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"></ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L51">Source</a>  </header> <div class="docstring"><pre>The negative infinity for single-floats.
+
+Supported on:
+* ABCL
+* ALLEGRO
+* CMUCL
+* ECL
+* MKCL
+* SBCL
+
+Defaults to MOST-NEGATIVE-SINGLE-FLOAT on unsupported implementations.</pre></div> </article> </li>  <li> <article class="definition constant" id="VARIABLE FLOAT-FEATURES:SINGLE-FLOAT-POSITIVE-INFINITY"> <header> <span class="visibility">EXTERNAL</span> <span class="type">CONSTANT</span> <h4 class="name"> <a href="#VARIABLE%20FLOAT-FEATURES%3ASINGLE-FLOAT-POSITIVE-INFINITY">SINGLE-FLOAT-POSITIVE-INFINITY</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"></ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L41">Source</a>  </header> <div class="docstring"><pre>The positive infinity for single-floats.
+
+Supported on:
+* ABCL
+* ALLEGRO
+* CMUCL
+* ECL
+* MKCL
+* SBCL
+
+Defaults to MOST-POSITIVE-SINGLE-FLOAT on unsupported implementations.</pre></div> </article> </li>  <li> <article class="definition function callable" id="FUNCTION FLOAT-FEATURES:FLOAT-INFINITY-P"> <header> <span class="visibility">EXTERNAL</span> <span class="type">FUNCTION</span> <h4 class="name"> <a href="#FUNCTION%20FLOAT-FEATURES%3AFLOAT-INFINITY-P">FLOAT-INFINITY-P</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"> <li class="argument">FLOAT</li> </ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L99">Source</a>  </header> <div class="docstring"><pre>Returns T if the given float is an infinity, NIL otherwise.
+
+Supported on:
+* ABCL
+* ALLEGRO
+* CCL
+* CMUCL
+* ECL
+* SBCL
+
+Defaults to comparing against the individual constants on unsupported
+implementations.</pre></div> </article> </li>  <li> <article class="definition function callable" id="FUNCTION FLOAT-FEATURES:FLOAT-NAN-P"> <header> <span class="visibility">EXTERNAL</span> <span class="type">FUNCTION</span> <h4 class="name"> <a href="#FUNCTION%20FLOAT-FEATURES%3AFLOAT-NAN-P">FLOAT-NAN-P</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"> <li class="argument">FLOAT</li> </ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L117">Source</a>  </header> <div class="docstring"><pre>Returns T if the given float is in not-a-number state, NIL otherwise.
+
+Supported on:
+* ABCL
+* ALLEGRO
+* CCL
+* CMUCL
+* ECL
+* SBCL
+
+Defaults to returning NIL on unsupported implementations.</pre></div> </article> </li>  <li> <article class="definition macro callable" id="MACRO-FUNCTION FLOAT-FEATURES:WITH-FLOAT-TRAPS-MASKED"> <header> <span class="visibility">EXTERNAL</span> <span class="type">MACRO</span> <h4 class="name"> <a href="#MACRO-FUNCTION%20FLOAT-FEATURES%3AWITH-FLOAT-TRAPS-MASKED">WITH-FLOAT-TRAPS-MASKED</a> </h4> <ul class="qualifiers"></ul> <ul class="arguments"> <li class="argument">TRAPS</li>  <li class="argument">&amp;BODY</li>  <li class="argument">BODY</li> </ul>  <a class="source-link" href="https://github.com/Shinmera/float-features/blob/master/float-features.lisp#L133">Source</a>  </header> <div class="docstring"><pre>Attempts to mask the given floating point traps.
+
+Masking a floating point trap causes the given floating point exception
+to not signal a condition in the lisp world, and instead lets the
+operation return a float that is either a NaN or an infinity.
+
+The following traps are recognised:
+
+  :underflow
+  :overflow
+  :inexact
+  :invalid 
+  :divide-by-zero
+  :denormalized-operand
+
+The traps argument may be either a list of the above trap identifiers,
+or T to signify all maskable traps.
+
+Note that not all implementations will signal conditions on all of the
+above floating point traps anyway, and some implementations may only
+support masking some of the above traps.
+
+Supported on:
+* ABCL (:overflow :underflow)
+* CLISP (:underflow)
+* CMUCL T
+* ECL (:underflow :overflow :inexact :invalid :divide-by-zero)
+* SBCL T
+
+Defaults to a progn on unsupported implementations and ignores
+unsupported traps.</pre></div> </article> </li> </ul> </article> </li> </ul> </section> </article> <script>window.addEventListener("DOMContentLoaded", function(){
+    var unmarkElement = function(el){
+        if(el.tagName === "mark" || el.tagName === "MARK"){
+            [].forEach.call(el.childNodes, function(child){
+                el.parentNode.insertBefore(child, el);
+            });
+            el.parentNode.removeChild(el);
+        }else if(el.parentNode.tagName === "mark"){
+            return unmarkElement(el.parentNode);
+        }
+        return null;
+    }
+
+    var unmarkAll = function(root){
+        root = root || document;
+        [].forEach.call(root.querySelectorAll("mark"), unmarkElement);
+    }
+    
+    var markElement = function(el){
+        if(el.parentNode.tagName === "mark" || el.parentNode.tagName === "MARK"){
+            return el.parentNode;
+        } else {
+            unmarkAll();
+            var marked = document.createElement("mark");
+            el.parentNode.insertBefore(marked, el);
+            marked.appendChild(el);
+            return marked;
+        }
+    }
+
+    var markFragmented = function(){
+        if(window.location.hash){
+            var el = document.getElementById(decodeURIComponent(window.location.hash.substr(1)));
+            if(el) markElement(el);
+        }
+    }
+
+    var registerXrefLink = function(link){
+        var el = document.getElementById(decodeURIComponent(link.getAttribute("href").substr(1)));
+        if(el){
+            link.addEventListener("click", function(){
+                markElement(el);
+            });
+        }
+    }
+
+    var registerXrefLinks = function(root){
+        root = root || document;
+        [].forEach.call(root.querySelectorAll("a.xref"), registerXrefLink);
+    }
+
+    markFragmented();
+    registerXrefLinks();
+}); </script> </body> </html> 
