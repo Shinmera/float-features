@@ -143,6 +143,16 @@
                  :traps ',(keep traps :overflow :underflow))
                 ,@body)
            (apply #'extensions:set-floating-point-modes ,previous))))
+    #+ccl
+    (let ((previous (gensym "PREVIOUS")))
+      `(let ((,previous (ccl:get-fpu-mode)))
+         (unwind-protect
+              (progn
+                (ccl:set-fpu-mode
+                 ,@(loop for trap in traps
+                         collect trap collect NIL))
+                ,@body)
+           (apply #'ccl:set-fpu-mode ,previous))))
     #+clisp
     (if (find :underflow)
         `(ext:without-floating-point-underflow
@@ -170,5 +180,5 @@
     #+sbcl
     `(sb-int:with-float-traps-masked #+x86 ,traps #-x86 ,(remove :denormalized-operand traps)
        ,@body)
-    #-(or abcl clisp cmucl cmucl ecl sbcl)
+    #-(or abcl ccl clisp cmucl ecl sbcl)
     `(progn ,@body)))

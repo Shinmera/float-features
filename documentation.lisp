@@ -157,6 +157,7 @@ support masking some of the above traps.
 
 Supported on:
 * ABCL (:overflow :underflow)
+* CCL (:overflow :underflow :inexact :invalid :divide-by-zero)
 * CLISP (:underflow)
 * CMUCL T
 * ECL (:underflow :overflow :inexact :invalid :divide-by-zero)
