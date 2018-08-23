@@ -7,6 +7,7 @@ The following implementations are currently partially or entirely supported:
 * abcl
 * allegro
 * ccl
+* clasp
 * cmucl
 * ecl
 * mkcl

@@ -23,87 +23,96 @@
 (in-package #:org.shirakumo.float-features)
 
 (defconstant short-float-positive-infinity
+  #+clasp ext:short-float-positive-infinity
   #+cmucl extensions:short-float-positive-infinity
   #+ecl ext:short-float-positive-infinity
   #+mkcl ext:short-float-positive-infinity
   #+sbcl sb-ext:short-float-positive-infinity
-  #-(or cmucl ecl mkcl sbcl)
+  #-(or clasp cmucl ecl mkcl sbcl)
   most-positive-short-float)
 
 (defconstant short-float-negative-infinity
+  #+clasp ext:short-float-negative-infinity
   #+cmucl extensions:short-float-negative-infinity
   #+ecl ext:short-float-negative-infinity
   #+mkcl ext:short-float-negative-infinity
   #+sbcl sb-ext:short-float-negative-infinity
-  #-(or cmucl ecl mkcl sbcl)
+  #-(or clasp cmucl ecl mkcl sbcl)
   most-negative-short-float)
 
 (defconstant single-float-positive-infinity
   #+abcl extensions:single-float-negative-infinity
   #+allegro excl:*infinity-single*
+  #+clasp ext:single-float-positive-infinity
   #+cmucl extensions:single-float-positive-infinity
   #+ecl ext:single-float-positive-infinity
   #+mkcl mkcl:single-float-positive-infinity
   #+sbcl sb-ext:single-float-positive-infinity
-  #-(or abcl allegro cmucl ecl mkcl sbcl)
+  #-(or abcl allegro clasp cmucl ecl mkcl sbcl)
   most-positive-single-float)
 
 (defconstant single-float-negative-infinity
   #+abcl extensions:single-float-negative-infinity
   #+allegro excl:*negative-infinity-single*
+  #+clasp ext:single-float-negative-infinity
   #+cmucl extensions:single-float-negative-infinity
   #+ecl ext:single-float-negative-infinity
   #+mkcl mkcl:single-float-negative-infinity
   #+sbcl sb-ext:single-float-negative-infinity
-  #-(or abcl allegro cmucl ecl mkcl sbcl)
+  #-(or abcl allegro clasp cmucl ecl mkcl sbcl)
   most-negative-single-float)
 
 (defconstant double-float-positive-infinity
   #+abcl extensions:double-float-negative-infinity
   #+allegro excl:*infinity-double*
   #+ccl ccl::double-float-positive-infinity
+  #+clasp ext:double-float-positive-infinity
   #+cmucl extensions:double-float-positive-infinity
   #+ecl ext:double-float-positive-infinity
   #+mkcl mkcl:double-float-positive-infinity
   #+sbcl sb-ext:double-float-positive-infinity
-  #-(or abcl allegro ccl cmucl ecl mkcl sbcl)
+  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl)
   most-positive-double-float)
 
 (defconstant double-float-negative-infinity
   #+abcl extensions:double-float-negative-infinity
   #+allegro excl:*negative-infinity-double*
   #+ccl (- ccl::double-float-positive-infinity)
+  #+clasp ext:double-float-negative-infinity
   #+cmucl extensions:double-float-negative-infinity
   #+ecl ext:double-float-negative-infinity
   #+mkcl mkcl:double-float-negative-infinity
   #+sbcl sb-ext:double-float-negative-infinity
-  #-(or abcl allegro ccl cmucl ecl mkcl sbcl)
+  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl)
   most-negative-double-float)
 
 (defconstant long-float-positive-infinity
+  #+clasp ext:long-float-positive-infinity
   #+cmucl extensions:long-float-positive-infinity
   #+ecl ext:long-float-positive-infinity
   #+mkcl ext:long-float-positive-infinity
   #+sbcl sb-ext:long-float-positive-infinity
-  #-(or cmucl ecl mkcl sbcl)
+  #-(or clasp cmucl ecl mkcl sbcl)
   most-positive-long-float)
 
 (defconstant long-float-negative-infinity
+  #+clasp ext:long-float-negative-infinity
   #+cmucl extensions:long-float-negative-infinity
   #+ecl ext:long-float-negative-infinity
   #+mkcl ext:long-float-negative-infinity
   #+sbcl sb-ext:long-float-negative-infinity
-  #-(or cmucl ecl mkcl sbcl)
+  #-(or clasp cmucl ecl mkcl sbcl)
   most-negative-long-float)
 
 (defun float-infinity-p (float)
   #+abcl (system:float-infinity-p float)
   #+allegro (excl:infinityp float)
   #+ccl (ccl::infinity-p float)
+  #+clasp (ext:float-infinity-p float)
   #+cmucl (extensions:float-infinity-p float)
   #+ecl (extensions:float-infinity-p float)
   #+sbcl (sb-ext:float-infinity-p float)
-  #-(or abcl allegro ccl cmucl ecl sbcl)
+  #-(or abcl allegro ccl clasp cmucl ecl sbcl)
   (etypecase float
     (short-float (or (= float short-float-negative-infinity)
                      (= float short-float-positive-infinity)))
@@ -119,10 +128,11 @@
   #+allegro (excl:nanp float)
   #+ccl (and (ccl::nan-or-infinity-p float)
              (not (ccl::infinity-p float)))
+  #+clasp (ext:float-nan-p float)
   #+cmucl (extensions:float-nan-p float)
   #+ecl (ext:float-nan-p float)
   #+sbcl (sb-ext:float-nan-p float)
-  #-(or abcl allegro ccl cmucl ecl sbcl)
+  #-(or abcl allegro ccl clasp cmucl ecl sbcl)
   NIL)
 
 (defun keep (list &rest keeps)
