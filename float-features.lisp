@@ -133,7 +133,7 @@
   #+ecl (ext:float-nan-p float)
   #+sbcl (sb-ext:float-nan-p float)
   #-(or abcl allegro ccl clasp cmucl ecl sbcl)
-  NIL)
+  (/= float float))
 
 (defun keep (list &rest keeps)
   (loop for item in list
