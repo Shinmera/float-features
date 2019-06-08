@@ -15,6 +15,7 @@ Supported on:
 * ECL
 * MKCL
 * SBCL
+* LISPWORKS
 
 Defaults to MOST-POSITIVE-SHORT-FLOAT on unsupported implementations.")
   
@@ -26,6 +27,7 @@ Supported on:
 * ECL
 * MKCL
 * SBCL
+* LISPWORKS
 
 Defaults to MOST-NEGATIVE-SHORT-FLOAT on unsupported implementations.")
 
@@ -39,6 +41,7 @@ Supported on:
 * ECL
 * MKCL
 * SBCL
+* LISPWORKS
 
 Defaults to MOST-POSITIVE-SINGLE-FLOAT on unsupported implementations.")
   
@@ -52,6 +55,7 @@ Supported on:
 * ECL
 * MKCL
 * SBCL
+* LISPWORKS
 
 Defaults to MOST-NEGATIVE-SINGLE-FLOAT on unsupported implementations.")
 
@@ -66,6 +70,7 @@ Supported on:
 * ECL
 * MKCL
 * SBCL
+* LISPWORKS
 
 Defaults to MOST-POSITIVE-DOUBLE-FLOAT on unsupported implementations.")
   
@@ -80,6 +85,7 @@ Supported on:
 * ECL
 * MKCL
 * SBCL
+* LISPWORKS
 
 Defaults to MOST-NEGATIVE-DOUBLE-FLOAT on unsupported implementations.")
 
@@ -91,6 +97,7 @@ Supported on:
 * ECL
 * MKCL
 * SBCL
+* LISPWORKS
 
 Defaults to MOST-POSITIVE-LONG-FLOAT on unsupported implementations.")
   
@@ -102,6 +109,7 @@ Supported on:
 * ECL
 * MKCL
 * SBCL
+* LISPWORKS
 
 Defaults to MOST-NEGATIVE-LONG-FLOAT on unsupported implementations.")
   
@@ -115,6 +123,7 @@ Supported on:
 * CMUCL
 * ECL
 * SBCL
+* LISPWORKS
 
 Defaults to comparing against the individual constants on unsupported
 implementations.")
@@ -129,6 +138,7 @@ Supported on:
 * CMUCL
 * ECL
 * SBCL
+* LISPWORKS
 
 Defaults to returning NIL on unsupported implementations.")
   
