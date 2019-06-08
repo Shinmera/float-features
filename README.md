@@ -12,4 +12,4 @@ The following implementations are currently partially or entirely supported:
 * ecl
 * mkcl
 * sbcl
-
+* lispworks

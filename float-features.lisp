@@ -28,7 +28,8 @@
   #+ecl ext:short-float-positive-infinity
   #+mkcl ext:short-float-positive-infinity
   #+sbcl sb-ext:short-float-positive-infinity
-  #-(or clasp cmucl ecl mkcl sbcl)
+  #+lispworks 1S++0
+  #-(or clasp cmucl ecl mkcl sbcl lispworks)
   most-positive-short-float)
 
 (defconstant short-float-negative-infinity
@@ -37,7 +38,8 @@
   #+ecl ext:short-float-negative-infinity
   #+mkcl ext:short-float-negative-infinity
   #+sbcl sb-ext:short-float-negative-infinity
-  #-(or clasp cmucl ecl mkcl sbcl)
+  #+lispworks -1S++0
+  #-(or clasp cmucl ecl mkcl sbcl lispworks)
   most-negative-short-float)
 
 (defconstant single-float-positive-infinity
@@ -48,7 +50,8 @@
   #+ecl ext:single-float-positive-infinity
   #+mkcl mkcl:single-float-positive-infinity
   #+sbcl sb-ext:single-float-positive-infinity
-  #-(or abcl allegro clasp cmucl ecl mkcl sbcl)
+  #+lispworks 1F++0
+  #-(or abcl allegro clasp cmucl ecl mkcl sbcl lispworks)
   most-positive-single-float)
 
 (defconstant single-float-negative-infinity
@@ -59,7 +62,8 @@
   #+ecl ext:single-float-negative-infinity
   #+mkcl mkcl:single-float-negative-infinity
   #+sbcl sb-ext:single-float-negative-infinity
-  #-(or abcl allegro clasp cmucl ecl mkcl sbcl)
+  #+lispworks -1F++0
+  #-(or abcl allegro clasp cmucl ecl mkcl sbcl lispworks)
   most-negative-single-float)
 
 (defconstant double-float-positive-infinity
@@ -71,7 +75,8 @@
   #+ecl ext:double-float-positive-infinity
   #+mkcl mkcl:double-float-positive-infinity
   #+sbcl sb-ext:double-float-positive-infinity
-  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl)
+  #+lispworks 1D++0
+  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl lispworks)
   most-positive-double-float)
 
 (defconstant double-float-negative-infinity
@@ -83,7 +88,8 @@
   #+ecl ext:double-float-negative-infinity
   #+mkcl mkcl:double-float-negative-infinity
   #+sbcl sb-ext:double-float-negative-infinity
-  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl)
+  #+lispworks -1D++0
+  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl lispworks)
   most-negative-double-float)
 
 (defconstant long-float-positive-infinity
@@ -92,7 +98,8 @@
   #+ecl ext:long-float-positive-infinity
   #+mkcl ext:long-float-positive-infinity
   #+sbcl sb-ext:long-float-positive-infinity
-  #-(or clasp cmucl ecl mkcl sbcl)
+  #+lispworks 1L++0
+  #-(or clasp cmucl ecl mkcl sbcl lispworks)
   most-positive-long-float)
 
 (defconstant long-float-negative-infinity
@@ -101,7 +108,8 @@
   #+ecl ext:long-float-negative-infinity
   #+mkcl ext:long-float-negative-infinity
   #+sbcl sb-ext:long-float-negative-infinity
-  #-(or clasp cmucl ecl mkcl sbcl)
+  #+lispworks -1L++0
+  #-(or clasp cmucl ecl mkcl sbcl lispworks)
   most-negative-long-float)
 
 (defun float-infinity-p (float)
@@ -132,7 +140,8 @@
   #+cmucl (extensions:float-nan-p float)
   #+ecl (ext:float-nan-p float)
   #+sbcl (sb-ext:float-nan-p float)
-  #-(or abcl allegro ccl clasp cmucl ecl sbcl)
+  #+lispworks (sys::nan-p float)
+  #-(or abcl allegro ccl clasp cmucl ecl sbcl lispworks)
   (/= float float))
 
 (defun keep (list &rest keeps)
@@ -190,5 +199,7 @@
     #+sbcl
     `(sb-int:with-float-traps-masked #+x86 ,traps #-x86 ,(remove :denormalized-operand traps)
        ,@body)
+    #-(or abcl ccl clisp cmucl ecl sbcl)
+    (declare (ignore traps))
     #-(or abcl ccl clisp cmucl ecl sbcl)
     `(progn ,@body)))
