@@ -11,6 +11,7 @@
     "The positive infinity for short-floats.
 
 Supported on:
+* CCL
 * CMUCL
 * ECL
 * MKCL
@@ -23,6 +24,7 @@ Defaults to MOST-POSITIVE-SHORT-FLOAT on unsupported implementations.")
     "The negative infinity for short-floats.
 
 Supported on:
+* CCL
 * CMUCL
 * ECL
 * MKCL
@@ -37,6 +39,7 @@ Defaults to MOST-NEGATIVE-SHORT-FLOAT on unsupported implementations.")
 Supported on:
 * ABCL
 * ALLEGRO
+* CCL
 * CMUCL
 * ECL
 * MKCL
@@ -51,6 +54,7 @@ Defaults to MOST-POSITIVE-SINGLE-FLOAT on unsupported implementations.")
 Supported on:
 * ABCL
 * ALLEGRO
+* CCL
 * CMUCL
 * ECL
 * MKCL
@@ -93,6 +97,7 @@ Defaults to MOST-NEGATIVE-DOUBLE-FLOAT on unsupported implementations.")
     "The positive infinity for long-floats.
 
 Supported on:
+* CCL
 * CMUCL
 * ECL
 * MKCL
@@ -105,6 +110,7 @@ Defaults to MOST-POSITIVE-LONG-FLOAT on unsupported implementations.")
     "The negative infinity for long-floats.
 
 Supported on:
+* CCL
 * CMUCL
 * ECL
 * MKCL

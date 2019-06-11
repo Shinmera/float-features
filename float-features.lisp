@@ -23,53 +23,57 @@
 (in-package #:org.shirakumo.float-features)
 
 (defconstant short-float-positive-infinity
+  #+ccl 1S++0
   #+clasp ext:short-float-positive-infinity
   #+cmucl extensions:short-float-positive-infinity
   #+ecl ext:short-float-positive-infinity
   #+mkcl ext:short-float-positive-infinity
   #+sbcl sb-ext:short-float-positive-infinity
   #+lispworks 1S++0
-  #-(or clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or ccl clasp cmucl ecl mkcl sbcl lispworks)
   most-positive-short-float)
 
 (defconstant short-float-negative-infinity
+  #+ccl -1S++0
   #+clasp ext:short-float-negative-infinity
   #+cmucl extensions:short-float-negative-infinity
   #+ecl ext:short-float-negative-infinity
   #+mkcl ext:short-float-negative-infinity
   #+sbcl sb-ext:short-float-negative-infinity
   #+lispworks -1S++0
-  #-(or clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or ccl clasp cmucl ecl mkcl sbcl lispworks)
   most-negative-short-float)
 
 (defconstant single-float-positive-infinity
   #+abcl extensions:single-float-negative-infinity
   #+allegro excl:*infinity-single*
+  #+ccl 1F++0
   #+clasp ext:single-float-positive-infinity
   #+cmucl extensions:single-float-positive-infinity
   #+ecl ext:single-float-positive-infinity
   #+mkcl mkcl:single-float-positive-infinity
   #+sbcl sb-ext:single-float-positive-infinity
   #+lispworks 1F++0
-  #-(or abcl allegro clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl lispworks)
   most-positive-single-float)
 
 (defconstant single-float-negative-infinity
   #+abcl extensions:single-float-negative-infinity
   #+allegro excl:*negative-infinity-single*
+  #+ccl -1F++0
   #+clasp ext:single-float-negative-infinity
   #+cmucl extensions:single-float-negative-infinity
   #+ecl ext:single-float-negative-infinity
   #+mkcl mkcl:single-float-negative-infinity
   #+sbcl sb-ext:single-float-negative-infinity
   #+lispworks -1F++0
-  #-(or abcl allegro clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl lispworks)
   most-negative-single-float)
 
 (defconstant double-float-positive-infinity
   #+abcl extensions:double-float-negative-infinity
   #+allegro excl:*infinity-double*
-  #+ccl ccl::double-float-positive-infinity
+  #+ccl 1D++0
   #+clasp ext:double-float-positive-infinity
   #+cmucl extensions:double-float-positive-infinity
   #+ecl ext:double-float-positive-infinity
@@ -82,7 +86,7 @@
 (defconstant double-float-negative-infinity
   #+abcl extensions:double-float-negative-infinity
   #+allegro excl:*negative-infinity-double*
-  #+ccl (- ccl::double-float-positive-infinity)
+  #+ccl -1D++0
   #+clasp ext:double-float-negative-infinity
   #+cmucl extensions:double-float-negative-infinity
   #+ecl ext:double-float-negative-infinity
@@ -93,23 +97,25 @@
   most-negative-double-float)
 
 (defconstant long-float-positive-infinity
+  #+ccl 1L++0
   #+clasp ext:long-float-positive-infinity
   #+cmucl extensions:long-float-positive-infinity
   #+ecl ext:long-float-positive-infinity
   #+mkcl ext:long-float-positive-infinity
   #+sbcl sb-ext:long-float-positive-infinity
   #+lispworks 1L++0
-  #-(or clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or ccl clasp cmucl ecl mkcl sbcl lispworks)
   most-positive-long-float)
 
 (defconstant long-float-negative-infinity
+  #+ccl -1L++0
   #+clasp ext:long-float-negative-infinity
   #+cmucl extensions:long-float-negative-infinity
   #+ecl ext:long-float-negative-infinity
   #+mkcl ext:long-float-negative-infinity
   #+sbcl sb-ext:long-float-negative-infinity
   #+lispworks -1L++0
-  #-(or clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or ccl clasp cmucl ecl mkcl sbcl lispworks)
   most-negative-long-float)
 
 (defun float-infinity-p (float)
