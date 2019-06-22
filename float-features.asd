@@ -6,7 +6,7 @@
 
 (asdf:defsystem float-features
   :version "1.0.0"
-  :license "Artistic"
+  :license "zlib"
   :author "Nicolas Hafner <shinmera@tymoon.eu>"
   :maintainer "Nicolas Hafner <shinmera@tymoon.eu>"
   :description "A portability library for IEEE float features not covered by the CL standard."
