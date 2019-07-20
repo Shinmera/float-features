@@ -124,7 +124,7 @@
   #+ccl (ccl::infinity-p float)
   #+clasp (ext:float-infinity-p float)
   #+cmucl (extensions:float-infinity-p float)
-  #+ecl (extensions:float-infinity-p float)
+  #+ecl (ext:float-infinity-p float)
   #+sbcl (sb-ext:float-infinity-p float)
   #-(or abcl allegro ccl clasp cmucl ecl sbcl)
   (etypecase float
