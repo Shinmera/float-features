@@ -169,7 +169,15 @@
                 ,@body)
            (apply #'extensions:set-floating-point-modes ,previous))))
     #+ccl
-    (let ((previous (gensym "PREVIOUS")))
+    (let ((previous (gensym "PREVIOUS"))
+          (traps (loop for thing in traps
+                       for trap = (case thing
+                                    (:underflow :underflow)
+                                    (:overflow :overflow)
+                                    (:divide-by-zero :division-by-zero)
+                                    (:invalid :invalid)
+                                    (:inexact :inexact))
+                       when trap collect trap)))
       `(let ((,previous (ccl:get-fpu-mode)))
          (unwind-protect
               (progn
