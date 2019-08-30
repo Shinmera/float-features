@@ -166,7 +166,7 @@
               (progn
                 (extensions:set-floating-point-modes
                  :traps ',(keep traps :overflow :underflow))
-                ,@body)
+                NIL ,@body)
            (apply #'extensions:set-floating-point-modes ,previous))))
     #+ccl
     (let ((previous (gensym "PREVIOUS"))
@@ -184,7 +184,7 @@
                 (ccl:set-fpu-mode
                  ,@(loop for trap in traps
                          collect trap collect NIL))
-                ,@body)
+                NIL ,@body)
            (apply #'ccl:set-fpu-mode ,previous))))
     #+clisp
     (if (find :underflow)
@@ -208,7 +208,7 @@
                                         (:invalid :floating-point-invalid)
                                         (:divide-by-zero :division-by-zero))
                         when keyword collect `(si::trap-fpe ,keyword T))
-                ,@body)
+                NIL ,@body)
            (si::trap-fpe ,previous NIL))))
     #+sbcl
     `(sb-int:with-float-traps-masked #+x86 ,traps #-x86 ,(remove :denormalized-operand traps)
