@@ -228,6 +228,7 @@
 
 (declaim (ftype (function (T) (unsigned-byte 16)) short-float-bits))
 (defun short-float-bits (float)
+  (declare (ignore float))
   (error "Implementation not supported."))
 
 (declaim (ftype (function (T) (unsigned-byte 32)) single-float-bits))
@@ -282,10 +283,12 @@
 
 (declaim (ftype (function (T) (unsigned-byte 128)) long-float-bits))
 (defun long-float-bits (float)
+  (declare (ignore float))
   (error "Implementation not supported."))
 
 (declaim (ftype (function (T) short-float) bits-short-float))
 (defun bits-short-float (bits)
+  (declare (ignore bits))
   (error "Implementation not supported."))
 
 (declaim (ftype (function (T) single-float) bits-single-float))
@@ -335,4 +338,5 @@
 
 (declaim (ftype (function (T) long-float) bits-long-float))
 (defun bits-long-float (bits)
+  (declare (ignore bits))
   (error "Implementation not supported."))
