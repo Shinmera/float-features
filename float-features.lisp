@@ -226,9 +226,11 @@
     #-(or abcl ccl clisp cmucl ecl sbcl)
     `(progn ,@body)))
 
+(declaim (ftype (function (T) (unsigned-byte 16)) short-float-bits))
 (defun short-float-bits (float)
   (error "Implementation not supported."))
 
+(declaim (ftype (function (T) (unsigned-byte 32)) single-float-bits))
 (defun single-float-bits (float)
   #+abcl
   (system:single-float-bits float)
@@ -250,6 +252,7 @@
   #-(or abcl allegro ccl cmucl lispworks sbcl)
   (error "Implementation not supported."))
 
+(declaim (ftype (function (T) (unsigned-byte 64)) double-float-bits))
 (defun double-float-bits (float)
   #+abcl
   (logior (system::double-float-low-bits float)
@@ -277,12 +280,15 @@
   #-(or abcl allegro ccl cmucl sbcl)
   (error "Implementation not supported."))
 
+(declaim (ftype (function (T) (unsigned-byte 128)) long-float-bits))
 (defun long-float-bits (float)
   (error "Implementation not supported."))
 
+(declaim (ftype (function (T) short-float) bits-short-float))
 (defun bits-short-float (bits)
   (error "Implementation not supported."))
 
+(declaim (ftype (function (T) single-float) bits-single-float))
 (defun bits-single-float (bits)
   #+abcl
   (system:make-single-float bits)
@@ -303,6 +309,7 @@
   #-(or abcl allegro ccl cmucl lispworks sbcl)
   (error "Implementation not supported."))
 
+(declaim (ftype (function (T) double-float) bits-double-float))
 (defun bits-double-float (bits)
   #+abcl
   (system:make-double-float bits)
@@ -326,5 +333,6 @@
   #-(or abcl allegro ccl cmucl lispworks sbcl)
   (error "Implementation not supported."))
 
+(declaim (ftype (function (T) long-float) bits-long-float))
 (defun bits-long-float (bits)
   (error "Implementation not supported."))
