@@ -180,4 +180,84 @@ Supported on:
 * SBCL T
 
 Defaults to a progn on unsupported implementations and ignores
-unsupported traps."))
+unsupported traps.")
+
+  (function short-float-bits
+    "Returns the bit representation of the short-float as an (unsigned-byte 16).
+
+Supported on:
+
+Defaults to signalling an error on unsupported implementations.")
+  
+  (function single-float-bits
+    "Returns the bit representation of the single-float as an (unsigned-byte 32).
+
+Supported on:
+* ABCL
+* ALLEGRO
+* CCL
+* CMUCL
+* LISPWORKS
+* SBCL
+
+Defaults to signalling an error on unsupported implementations.")
+  
+  (function double-float-bits
+    "Returns the bit representation of the double-float as an (unsigned-byte 64).
+
+Supported on:
+* ABCL
+* ALLEGRO
+* CCL
+* CMUCL
+* LISPWORKS
+* SBCL
+
+Defaults to signalling an error on unsupported implementations.")
+  
+  (function long-float-bits
+    "Returns the bit representation of the long-float as an (unsigned-byte 128).
+
+Supported on:
+
+Defaults to signalling an error on unsupported implementations.")
+  
+  (function bits-short-float
+    "Encodes the (unsigned-byte 16) bit representation into a native short-float.
+
+Supported on:
+
+Defaults to signalling an error on unsupported implementations.")
+  
+  (function bits-single-float
+    "Encodes the (unsigned-byte 32) bit representation into a native single-float.
+
+Supported on:
+* ABCL
+* ALLEGRO
+* CCL
+* CMUCL
+* LISPWORKS
+* SBCL
+
+Defaults to signalling an error on unsupported implementations.")
+  
+  (function bits-double-float
+    "Encodes the (unsigned-byte 64) bit representation into a native double-float.
+
+Supported on:
+* ABCL
+* ALLEGRO
+* CCL
+* CMUCL
+* LISPWORKS
+* SBCL
+
+Defaults to signalling an error on unsupported implementations.")
+  
+  (function bits-long-float
+    "Encodes the (unsigned-byte 128) bit representation into a native long-float.
+
+Supported on:
+
+Defaults to signalling an error on unsupported implementations."))

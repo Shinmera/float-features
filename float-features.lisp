@@ -18,7 +18,15 @@
    #:long-float-negative-infinity
    #:float-infinity-p
    #:float-nan-p
-   #:with-float-traps-masked))
+   #:with-float-traps-masked
+   #:short-float-bits
+   #:single-float-bits
+   #:double-float-bits
+   #:long-float-bits
+   #:bits-short-float
+   #:bits-single-float
+   #:bits-double-float
+   #:bits-long-float))
 
 (in-package #:org.shirakumo.float-features)
 
@@ -217,3 +225,106 @@
     (declare (ignore traps))
     #-(or abcl ccl clisp cmucl ecl sbcl)
     `(progn ,@body)))
+
+(defun short-float-bits (float)
+  (error "Implementation not supported."))
+
+(defun single-float-bits (float)
+  #+abcl
+  (system:single-float-bits float)
+  #+allegro
+  (multiple-value-bind (high low) (excl:single-float-to-shorts float)
+    (logior low (ash high 32)))
+  #+ccl
+  (ccl::single-float-bits float)
+  #+cmucl
+  (kernel:single-float-bits float)
+  #+lispworks
+  (let ((v (sys:make-typed-aref-vector 4)))
+    (declare (optimize (speed 3) (float 0) (safety 0)))
+    (declare (dynamic-extent v))
+    (setf (sys:typed-aref 'single-float v 0) float)
+    (sys:typed-aref '(unsigned-byte 32) v 0))
+  #+sbcl
+  (sb-kernel:single-float-bits float)
+  #-(or abcl allegro ccl cmucl lispworks sbcl)
+  (error "Implementation not supported."))
+
+(defun double-float-bits (float)
+  #+abcl
+  (logior (system::double-float-low-bits float)
+          (ash (system::double-float-high-bits float) 32))
+  #+allegro
+  (multiple-value-bind (s3 s2 s1 s0) (excl:double-float-to-shorts float)
+    (logior s0 (ash s1 16) (ash s2 32) (ash s3 48)))
+  #+ccl
+  (multiple-value-bind (high low) (ccl::double-float-bits float)
+    (logior low (ash high 32)))
+  #+cmucl
+  (logior (kernel:double-float-low-bits float)
+          (ash (kernel:double-float-high-bits float) 32))
+  #+lispworks
+  (let ((v (sys:make-typed-aref-vector 8))
+    (declare (optimize (speed 3) (float 0) (safety 0)))
+    (declare (dynamic-extent v))
+    (setf (sys:typed-aref 'double-float v 0) float)
+        #+x86-64 (sys:typed-aref '(unsigned-byte 64) v 0)
+        #-x64-64 (logior (sys:typed-aref '(unsigned-byte 32) v 0)
+                         (ash (sys:typed-aref '(unsigned-byte 32) v 4) 32))))
+  #+sbcl
+  (logior (sb-kernel:double-float-low-bits float)
+          (ash (sb-kernel:double-float-high-bits float) 32))
+  #-(or abcl allegro ccl cmucl sbcl)
+  (error "Implementation not supported."))
+
+(defun long-float-bits (float)
+  (error "Implementation not supported."))
+
+(defun bits-short-float (bits)
+  (error "Implementation not supported."))
+
+(defun bits-single-float (bits)
+  #+abcl
+  (system:make-single-float bits)
+  #+allegro
+  (excl:shorts-to-single-float (ldb (byte 16 16) bits) (ldb (byte 16 0) bits))
+  #+ccl
+  (ccl::host-single-float-from-unsigned-byte-32 bits)
+  #+cmucl
+  (kernel:make-single-float bits)
+  #+lispworks
+  (let ((v (sys:make-typed-aref-vector 4)))
+    (declare (optimize speed (float 0) (safety 0)))
+    (declare (dynamic-extent v))
+    (setf (sys:typed-aref '(unsigned-byte 32) v 0) bits)
+    (sys:typed-aref 'single-float v 0))
+  #+sbcl
+  (sb-kernel:make-single-float bits)
+  #-(or abcl allegro ccl cmucl lispworks sbcl)
+  (error "Implementation not supported."))
+
+(defun bits-double-float (bits)
+  #+abcl
+  (system:make-double-float bits)
+  #+allegro
+  (excl:shorts-to-double-float
+   (ldb (byte 16 48) bits) (ldb (byte 16 32) bits) (ldb (byte 16 16) bits) (ldb (byte 16 0) bits))
+  #+ccl
+  (ccl:double-float-from-bits (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
+  #+cmucl
+  (kernel:make-double-float (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
+  #+lispworks
+  (let ((v (sys:make-typed-aref-vector 8)))
+    (declare (optimize speed (float 0) (safety 0)))
+    (declare (dynamic-extent v))
+    #+x86-64 (setf (sys:typed-aref '(unsigned-byte 64) v 0) bits)
+    #-x86-64 (setf (sys:typed-aref '(unsigned-byte 32) v 0) (ldb (byte 32 0) bits)
+                   (sys:typed-aref '(unsigned-byte 32) v 4) (ldb (byte 32 32) bits))
+    (sys:typed-aref 'double-float v 0))
+  #+sbcl
+  (sb-kernel:make-double-float (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
+  #-(or abcl allegro ccl cmucl lispworks sbcl)
+  (error "Implementation not supported."))
+
+(defun bits-long-float (bits)
+  (error "Implementation not supported."))
