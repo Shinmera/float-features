@@ -320,7 +320,7 @@
   (excl:shorts-to-double-float
    (ldb (byte 16 48) bits) (ldb (byte 16 32) bits) (ldb (byte 16 16) bits) (ldb (byte 16 0) bits))
   #+ccl
-  (ccl:double-float-from-bits (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
+  (ccl::double-float-from-bits (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
   #+cmucl
   (kernel:make-double-float (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
   #+lispworks
