@@ -251,7 +251,7 @@
   #+sbcl
   (sb-kernel:single-float-bits float)
   #-(or abcl allegro ccl cmucl lispworks sbcl)
-  (error "Implementation not supported."))
+  (progn float (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) (unsigned-byte 64)) double-float-bits))
 (defun double-float-bits (float)
@@ -279,7 +279,7 @@
   (logior (sb-kernel:double-float-low-bits float)
           (ash (sb-kernel:double-float-high-bits float) 32))
   #-(or abcl allegro ccl cmucl lispworks sbcl)
-  (error "Implementation not supported."))
+  (progn float (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) (unsigned-byte 128)) long-float-bits))
 (defun long-float-bits (float)
@@ -310,7 +310,7 @@
   #+sbcl
   (sb-kernel:make-single-float bits)
   #-(or abcl allegro ccl cmucl lispworks sbcl)
-  (error "Implementation not supported."))
+  (progn bits (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) double-float) bits-double-float))
 (defun bits-double-float (bits)
@@ -334,7 +334,7 @@
   #+sbcl
   (sb-kernel:make-double-float (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
   #-(or abcl allegro ccl cmucl lispworks sbcl)
-  (error "Implementation not supported."))
+  (progn bits (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) long-float) bits-long-float))
 (defun bits-long-float (bits)
