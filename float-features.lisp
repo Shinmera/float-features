@@ -278,7 +278,7 @@
   #+sbcl
   (logior (sb-kernel:double-float-low-bits float)
           (ash (sb-kernel:double-float-high-bits float) 32))
-  #-(or abcl allegro ccl cmucl sbcl)
+  #-(or abcl allegro ccl cmucl lispworks sbcl)
   (error "Implementation not supported."))
 
 (declaim (ftype (function (T) (unsigned-byte 128)) long-float-bits))
