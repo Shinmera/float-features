@@ -196,6 +196,7 @@ Supported on:
 * ABCL
 * ALLEGRO
 * CCL
+* CLASP
 * CMUCL
 * LISPWORKS
 * SBCL
@@ -209,6 +210,7 @@ Supported on:
 * ABCL
 * ALLEGRO
 * CCL
+* CLASP
 * CMUCL
 * LISPWORKS
 * SBCL
@@ -236,6 +238,7 @@ Supported on:
 * ABCL
 * ALLEGRO
 * CCL
+* CLASP
 * CMUCL
 * LISPWORKS
 * SBCL
@@ -249,6 +252,7 @@ Supported on:
 * ABCL
 * ALLEGRO
 * CCL
+* CLASP
 * CMUCL
 * LISPWORKS
 * SBCL

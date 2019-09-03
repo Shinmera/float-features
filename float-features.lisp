@@ -240,6 +240,8 @@
     (logior low (ash high 32)))
   #+ccl
   (ccl::single-float-bits float)
+  #+clasp
+  (core:single-float-bits float)
   #+cmucl
   (kernel:single-float-bits float)
   #+lispworks
@@ -264,6 +266,8 @@
   #+ccl
   (multiple-value-bind (high low) (ccl::double-float-bits float)
     (logior low (ash high 32)))
+  #+clasp
+  (core:double-float-bits float)
   #+cmucl
   (logior (kernel:double-float-low-bits float)
           (ash (kernel:double-float-high-bits float) 32))
@@ -299,6 +303,8 @@
   (excl:shorts-to-single-float (ldb (byte 16 16) bits) (ldb (byte 16 0) bits))
   #+ccl
   (ccl::host-single-float-from-unsigned-byte-32 bits)
+  #+clasp
+  (core:single-float-from-unsigned-byte-32 bits)
   #+cmucl
   (kernel:make-single-float bits)
   #+lispworks
@@ -321,6 +327,8 @@
    (ldb (byte 16 48) bits) (ldb (byte 16 32) bits) (ldb (byte 16 16) bits) (ldb (byte 16 0) bits))
   #+ccl
   (ccl::double-float-from-bits (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
+  #+clasp
+  (core:double-float-from-bits bits)
   #+cmucl
   (kernel:make-double-float (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
   #+lispworks
