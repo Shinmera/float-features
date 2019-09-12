@@ -272,7 +272,7 @@
   (logior (kernel:double-float-low-bits float)
           (ash (kernel:double-float-high-bits float) 32))
   #+lispworks
-  (let ((v (sys:make-typed-aref-vector 8))
+  (let ((v (sys:make-typed-aref-vector 8)))
     (declare (optimize (speed 3) (float 0) (safety 0)))
     (declare (dynamic-extent v))
     (setf (sys:typed-aref 'double-float v 0) float)
