@@ -218,12 +218,15 @@
                         when keyword collect `(si::trap-fpe ,keyword T))
                 NIL ,@body)
            (si::trap-fpe ,previous NIL))))
+    #+clasp
+     `(ext:with-float-traps-masked ,traps
+       ,@body)
     #+sbcl
     `(sb-int:with-float-traps-masked #+x86 ,traps #-x86 ,(remove :denormalized-operand traps)
        ,@body)
-    #-(or abcl ccl clisp cmucl ecl sbcl)
+    #-(or abcl ccl clasp clisp cmucl ecl sbcl)
     (declare (ignore traps))
-    #-(or abcl ccl clisp cmucl ecl sbcl)
+    #-(or abcl ccl clasp clisp cmucl ecl sbcl)
     `(progn ,@body)))
 
 (declaim (ftype (function (T) (unsigned-byte 16)) short-float-bits))

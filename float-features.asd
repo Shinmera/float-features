@@ -15,3 +15,17 @@
   :components ((:file "float-features")
                (:file "documentation"))
   :depends-on (:documentation-utils))
+
+(asdf:defsystem float-features/tests
+  :version "1.0.0"
+  :license "zlib"
+  :author "Nicolas Hafner <shinmera@tymoon.eu>"
+  :maintainer "Nicolas Hafner <shinmera@tymoon.eu>"
+  :description "Tests for Float Features"
+  :in-order-to ((asdf:test-op (load-op "float-features/tests")))
+  :perform (asdf:test-op (o s)
+                    (uiop:symbol-call :parachute :test :float-features/tests))
+  :homepage "https://github.com/Shinmera/float-features"
+  :serial T
+  :components ((:file "test-float-features"))
+  :depends-on (:float-features :parachute))
