@@ -14,4 +14,5 @@
   :serial T
   :components ((:file "float-features")
                (:file "documentation"))
+  :in-order-to ((asdf:test-op (asdf:test-op :float-features-test)))
   :depends-on (:documentation-utils))
