@@ -4,15 +4,14 @@
  Author: Nicolas Hafner <shinmera@tymoon.eu>
 |#
 
-(asdf:defsystem float-features
+(asdf:defsystem float-features-tests
   :version "1.0.0"
   :license "zlib"
   :author "Nicolas Hafner <shinmera@tymoon.eu>"
   :maintainer "Nicolas Hafner <shinmera@tymoon.eu>"
-  :description "A portability library for IEEE float features not covered by the CL standard."
+  :description "Tests for Float Features"
+  :perform (asdf:test-op (op c) (uiop:symbol-call :parachute :test :float-features-test))
   :homepage "https://github.com/Shinmera/float-features"
   :serial T
-  :components ((:file "float-features")
-               (:file "documentation"))
-  :in-order-to ((asdf:test-op (asdf:test-op :float-features-test)))
-  :depends-on (:documentation-utils))
+  :components ((:file "test-float-features"))
+  :depends-on (:float-features :parachute))
