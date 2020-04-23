@@ -244,7 +244,7 @@
   #+ccl
   (ccl::single-float-bits float)
   #+clasp
-  (core:single-float-bits float)
+  (ext:single-float-to-bits float)
   #+cmucl
   (kernel:single-float-bits float)
   #+lispworks
@@ -255,7 +255,7 @@
     (sys:typed-aref '(unsigned-byte 32) v 0))
   #+sbcl
   (sb-kernel:single-float-bits float)
-  #-(or abcl allegro ccl cmucl lispworks sbcl)
+  #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
   (progn float (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) (unsigned-byte 64)) double-float-bits))
@@ -270,7 +270,7 @@
   (multiple-value-bind (high low) (ccl::double-float-bits float)
     (logior low (ash high 32)))
   #+clasp
-  (core:double-float-bits float)
+  (ext:double-float-to-bits float)
   #+cmucl
   (logior (kernel:double-float-low-bits float)
           (ash (kernel:double-float-high-bits float) 32))
@@ -285,7 +285,7 @@
   #+sbcl
   (logior (sb-kernel:double-float-low-bits float)
           (ash (sb-kernel:double-float-high-bits float) 32))
-  #-(or abcl allegro ccl cmucl lispworks sbcl)
+  #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
   (progn float (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) (unsigned-byte 128)) long-float-bits))
@@ -307,7 +307,7 @@
   #+ccl
   (ccl::host-single-float-from-unsigned-byte-32 bits)
   #+clasp
-  (core:single-float-from-unsigned-byte-32 bits)
+  (ext:bits-to-single-float bits)
   #+cmucl
   (kernel:make-single-float bits)
   #+lispworks
@@ -318,7 +318,7 @@
     (sys:typed-aref 'single-float v 0))
   #+sbcl
   (sb-kernel:make-single-float bits)
-  #-(or abcl allegro ccl cmucl lispworks sbcl)
+  #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
   (progn bits (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) double-float) bits-double-float))
@@ -331,7 +331,7 @@
   #+ccl
   (ccl::double-float-from-bits (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
   #+clasp
-  (core:double-float-from-bits bits)
+  (ext:bits-to-double-float bits)
   #+cmucl
   (kernel:make-double-float (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
   #+lispworks
@@ -344,7 +344,7 @@
     (sys:typed-aref 'double-float v 0))
   #+sbcl
   (sb-kernel:make-double-float (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
-  #-(or abcl allegro ccl cmucl lispworks sbcl)
+  #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
   (progn bits (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) long-float) bits-long-float))
