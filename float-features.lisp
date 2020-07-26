@@ -35,10 +35,11 @@
   #+clasp ext:short-float-positive-infinity
   #+cmucl extensions:short-float-positive-infinity
   #+ecl ext:short-float-positive-infinity
+  #+mezzano mezzano.extensions:short-float-positive-infinity
   #+mkcl ext:short-float-positive-infinity
   #+sbcl sb-ext:short-float-positive-infinity
   #+lispworks 1S++0
-  #-(or ccl clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
   most-positive-short-float)
 
 (defconstant short-float-negative-infinity
@@ -46,10 +47,11 @@
   #+clasp ext:short-float-negative-infinity
   #+cmucl extensions:short-float-negative-infinity
   #+ecl ext:short-float-negative-infinity
+  #+mezzano mezzano.extensions:short-float-negative-infinity
   #+mkcl ext:short-float-negative-infinity
   #+sbcl sb-ext:short-float-negative-infinity
   #+lispworks -1S++0
-  #-(or ccl clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
   most-negative-short-float)
 
 (defconstant single-float-positive-infinity
@@ -59,10 +61,11 @@
   #+clasp ext:single-float-positive-infinity
   #+cmucl extensions:single-float-positive-infinity
   #+ecl ext:single-float-positive-infinity
+  #+mezzano mezzano.extensions:single-float-positive-infinity
   #+mkcl mkcl:single-float-positive-infinity
   #+sbcl sb-ext:single-float-positive-infinity
   #+lispworks 1F++0
-  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or abcl allegro ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
   most-positive-single-float)
 
 (defconstant single-float-negative-infinity
@@ -72,10 +75,11 @@
   #+clasp ext:single-float-negative-infinity
   #+cmucl extensions:single-float-negative-infinity
   #+ecl ext:single-float-negative-infinity
+  #+mezzano mezzano.extensions:single-float-negative-infinity
   #+mkcl mkcl:single-float-negative-infinity
   #+sbcl sb-ext:single-float-negative-infinity
   #+lispworks -1F++0
-  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or abcl allegro ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
   most-negative-single-float)
 
 (defconstant double-float-positive-infinity
@@ -85,10 +89,11 @@
   #+clasp ext:double-float-positive-infinity
   #+cmucl extensions:double-float-positive-infinity
   #+ecl ext:double-float-positive-infinity
+  #+mezzano mezzano.extensions:double-float-positive-infinity
   #+mkcl mkcl:double-float-positive-infinity
   #+sbcl sb-ext:double-float-positive-infinity
   #+lispworks 1D++0
-  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or abcl allegro ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
   most-positive-double-float)
 
 (defconstant double-float-negative-infinity
@@ -98,10 +103,11 @@
   #+clasp ext:double-float-negative-infinity
   #+cmucl extensions:double-float-negative-infinity
   #+ecl ext:double-float-negative-infinity
+  #+mezzano mezzano.extensions:double-float-negative-infinity
   #+mkcl mkcl:double-float-negative-infinity
   #+sbcl sb-ext:double-float-negative-infinity
   #+lispworks -1D++0
-  #-(or abcl allegro ccl clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or abcl allegro ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
   most-negative-double-float)
 
 (defconstant long-float-positive-infinity
@@ -109,10 +115,11 @@
   #+clasp ext:long-float-positive-infinity
   #+cmucl extensions:long-float-positive-infinity
   #+ecl ext:long-float-positive-infinity
+  #+mezzano mezzano.extensions:long-float-positive-infinity
   #+mkcl ext:long-float-positive-infinity
   #+sbcl sb-ext:long-float-positive-infinity
   #+lispworks 1L++0
-  #-(or ccl clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
   most-positive-long-float)
 
 (defconstant long-float-negative-infinity
@@ -120,10 +127,11 @@
   #+clasp ext:long-float-negative-infinity
   #+cmucl extensions:long-float-negative-infinity
   #+ecl ext:long-float-negative-infinity
+  #+mezzano mezzano.extensions:long-float-negative-infinity
   #+mkcl ext:long-float-negative-infinity
   #+sbcl sb-ext:long-float-negative-infinity
   #+lispworks -1L++0
-  #-(or ccl clasp cmucl ecl mkcl sbcl lispworks)
+  #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
   most-negative-long-float)
 
 (defun float-infinity-p (float)
@@ -133,8 +141,9 @@
   #+clasp (ext:float-infinity-p float)
   #+cmucl (extensions:float-infinity-p float)
   #+ecl (ext:float-infinity-p float)
+  #+mezzano (mezzano.extensions:float-infinity-p float)
   #+sbcl (sb-ext:float-infinity-p float)
-  #-(or abcl allegro ccl clasp cmucl ecl sbcl)
+  #-(or abcl allegro ccl clasp cmucl ecl mezzano sbcl)
   (etypecase float
     (short-float (or (= float short-float-negative-infinity)
                      (= float short-float-positive-infinity)))
@@ -153,9 +162,10 @@
   #+clasp (ext:float-nan-p float)
   #+cmucl (extensions:float-nan-p float)
   #+ecl (ext:float-nan-p float)
+  #+mezzano (mezzano.extensions:float-nan-p float)
   #+sbcl (sb-ext:float-nan-p float)
   #+lispworks (sys::nan-p float)
-  #-(or abcl allegro ccl clasp cmucl ecl sbcl lispworks)
+  #-(or abcl allegro ccl clasp cmucl ecl mezzano sbcl lispworks)
   (/= float float))
 
 (defun keep (list &rest keeps)
@@ -221,17 +231,41 @@
     #+clasp
      `(ext:with-float-traps-masked ,traps
        ,@body)
+    #+mezzano
+    (let ((previous (gensym "PREVIOUS"))
+          (traps (loop for thing in traps
+                       for trap = (case thing
+                                    (:underflow :underflow)
+                                    (:overflow :overflow)
+                                    (:divide-by-zero :divide-by-zero)
+                                    (:invalid :invalid-operation)
+                                    (:inexact :precision)
+                                    #+x86-64
+                                    (:denormalized-operand :denormal-operand))
+                       when trap collect trap)))
+      `(let ((,previous (mezzano.runtime::get-fpu-mode)))
+         (unwind-protect
+              (progn
+                (mezzano.runtime::set-fpu-mode
+                 ,@(loop for trap in traps
+                         collect trap collect T))
+                NIL ,@body)
+           (apply #'mezzano.runtime::set-fpu-mode ,previous))))
     #+sbcl
     `(sb-int:with-float-traps-masked #+x86 ,traps #-x86 ,(remove :denormalized-operand traps)
        ,@body)
-    #-(or abcl ccl clasp clisp cmucl ecl sbcl)
+    #-(or abcl ccl clasp clisp cmucl ecl mezzano sbcl)
     (declare (ignore traps))
-    #-(or abcl ccl clasp clisp cmucl ecl sbcl)
+    #-(or abcl ccl clasp clisp cmucl ecl mezzano sbcl)
     `(progn ,@body)))
 
 (declaim (ftype (function (T) (unsigned-byte 16)) short-float-bits))
 (defun short-float-bits (float)
+  #-mezzano
   (declare (ignore float))
+  #+mezzano
+  (mezzano.extensions:short-float-to-ieee-binary16 float)
+  #-mezzano
   (error "Implementation not supported."))
 
 (declaim (ftype (function (T) (unsigned-byte 32)) single-float-bits))
@@ -253,9 +287,11 @@
     (declare (dynamic-extent v))
     (setf (sys:typed-aref 'single-float v 0) float)
     (sys:typed-aref '(unsigned-byte 32) v 0))
+  #+mezzano
+  (mezzano.extensions:single-float-to-ieee-binary32 float)
   #+sbcl
   (ldb (byte 32 0) (sb-kernel:single-float-bits float))
-  #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
+  #-(or abcl allegro ccl clasp cmucl lispworks mezzano sbcl)
   (progn float (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) (unsigned-byte 64)) double-float-bits))
@@ -282,11 +318,13 @@
         #+x86-64 (sys:typed-aref '(unsigned-byte 64) v 0)
         #-x64-64 (logior (sys:typed-aref '(unsigned-byte 32) v 0)
                          (ash (sys:typed-aref '(unsigned-byte 32) v 4) 32)))
+  #+mezzano
+  (mezzano.extensions:double-float-to-ieee-binary64 float)
   #+sbcl
   (ldb (byte 64 0)
        (logior (sb-kernel:double-float-low-bits float)
                (ash (sb-kernel:double-float-high-bits float) 32)))
-  #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
+  #-(or abcl allegro ccl clasp cmucl lispworks mezzano sbcl)
   (progn float (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) (unsigned-byte 128)) long-float-bits))
@@ -296,7 +334,11 @@
 
 (declaim (ftype (function (T) short-float) bits-short-float))
 (defun bits-short-float (bits)
+  #-mezzano
   (declare (ignore bits))
+  #+mezzano
+  (mezzano.extensions:ieee-binary16-to-short-float bits)
+  #-mezzano
   (error "Implementation not supported."))
 
 (declaim (ftype (function (T) single-float) bits-single-float))
@@ -317,9 +359,11 @@
     (declare (dynamic-extent v))
     (setf (sys:typed-aref '(unsigned-byte 32) v 0) bits)
     (sys:typed-aref 'single-float v 0))
+  #+mezzano
+  (mezzano.extensions:ieee-binary32-to-single-float bits)
   #+sbcl
   (sb-kernel:make-single-float bits)
-  #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
+  #-(or abcl allegro ccl clasp cmucl lispworks mezzano sbcl)
   (progn bits (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) double-float) bits-double-float))
@@ -343,9 +387,11 @@
     #-x86-64 (setf (sys:typed-aref '(unsigned-byte 32) v 0) (ldb (byte 32 0) bits)
                    (sys:typed-aref '(unsigned-byte 32) v 4) (ldb (byte 32 32) bits))
     (sys:typed-aref 'double-float v 0))
+  #+mezzano
+  (mezzano.extensions:ieee-binary64-to-double-float bits)
   #+sbcl
   (sb-kernel:make-double-float (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
-  #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
+  #-(or abcl allegro ccl clasp cmucl lispworks mezzano sbcl)
   (progn bits (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) long-float) bits-long-float))
