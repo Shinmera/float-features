@@ -15,6 +15,7 @@ Supported on:
 * CMUCL
 * ECL
 * LISPWORKS
+* MEZZANO
 * MKCL
 * SBCL
 
@@ -28,6 +29,7 @@ Supported on:
 * CMUCL
 * ECL
 * LISPWORKS
+* MEZZANO
 * MKCL
 * SBCL
 
@@ -43,6 +45,7 @@ Supported on:
 * CMUCL
 * ECL
 * LISPWORKS
+* MEZZANO
 * MKCL
 * SBCL
 
@@ -58,6 +61,7 @@ Supported on:
 * CMUCL
 * ECL
 * LISPWORKS
+* MEZZANO
 * MKCL
 * SBCL
 
@@ -73,6 +77,7 @@ Supported on:
 * CMUCL
 * ECL
 * LISPWORKS
+* MEZZANO
 * MKCL
 * SBCL
 
@@ -88,6 +93,7 @@ Supported on:
 * CMUCL
 * ECL
 * LISPWORKS
+* MEZZANO
 * MKCL
 * SBCL
 
@@ -101,6 +107,7 @@ Supported on:
 * CMUCL
 * ECL
 * LISPWORKS
+* MEZZANO
 * MKCL
 * SBCL
 
@@ -114,6 +121,7 @@ Supported on:
 * CMUCL
 * ECL
 * LISPWORKS
+* MEZZANO
 * MKCL
 * SBCL
 
@@ -129,6 +137,7 @@ Supported on:
 * CMUCL
 * ECL
 * LISPWORKS
+* MEZZANO
 * SBCL
 
 Defaults to comparing against the individual constants on unsupported
@@ -144,6 +153,7 @@ Supported on:
 * CMUCL
 * ECL
 * LISPWORKS
+* MEZZANO
 * SBCL
 
 Defaults to returning NIL on unsupported implementations.")
@@ -177,6 +187,7 @@ Supported on:
 * CLISP (:underflow)
 * CMUCL T
 * ECL (:underflow :overflow :inexact :invalid :divide-by-zero)
+* MEZZANO T
 * SBCL T
 
 Defaults to a progn on unsupported implementations and ignores
@@ -186,6 +197,7 @@ unsupported traps.")
     "Returns the bit representation of the short-float as an (unsigned-byte 16).
 
 Supported on:
+* MEZZANO
 
 Defaults to signalling an error on unsupported implementations.")
   
@@ -199,6 +211,7 @@ Supported on:
 * CLASP
 * CMUCL
 * LISPWORKS
+* MEZZANO
 * SBCL
 
 Defaults to signalling an error on unsupported implementations.")
@@ -213,6 +226,7 @@ Supported on:
 * CLASP
 * CMUCL
 * LISPWORKS
+* MEZZANO
 * SBCL
 
 Defaults to signalling an error on unsupported implementations.")
@@ -228,6 +242,7 @@ Defaults to signalling an error on unsupported implementations.")
     "Encodes the (unsigned-byte 16) bit representation into a native short-float.
 
 Supported on:
+* MEZZANO
 
 Defaults to signalling an error on unsupported implementations.")
   
@@ -241,6 +256,7 @@ Supported on:
 * CLASP
 * CMUCL
 * LISPWORKS
+* MEZZANO
 * SBCL
 
 Defaults to signalling an error on unsupported implementations.")
@@ -255,6 +271,7 @@ Supported on:
 * CLASP
 * CMUCL
 * LISPWORKS
+* MEZZANO
 * SBCL
 
 Defaults to signalling an error on unsupported implementations.")
