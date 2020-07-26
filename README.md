@@ -10,6 +10,7 @@ The following implementations are currently partially or entirely supported:
 * clasp
 * cmucl
 * ecl
+* mezzano
 * mkcl
 * sbcl
 * lispworks
