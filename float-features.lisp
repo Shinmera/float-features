@@ -229,12 +229,12 @@
     #-(or abcl ccl clasp clisp cmucl ecl sbcl)
     `(progn ,@body)))
 
-(declaim (ftype (function (T) (signed-byte 16)) short-float-bits))
+(declaim (ftype (function (T) (unsigned-byte 16)) short-float-bits))
 (defun short-float-bits (float)
   (declare (ignore float))
   (error "Implementation not supported."))
 
-(declaim (ftype (function (T) (signed-byte 32)) single-float-bits))
+(declaim (ftype (function (T) (unsigned-byte 32)) single-float-bits))
 (defun single-float-bits (float)
   #+abcl
   (system:single-float-bits float)
@@ -254,11 +254,11 @@
     (setf (sys:typed-aref 'single-float v 0) float)
     (sys:typed-aref '(unsigned-byte 32) v 0))
   #+sbcl
-  (sb-kernel:single-float-bits float)
+  (ldb (byte 32 0) (sb-kernel:single-float-bits float))
   #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
   (progn float (error "Implementation not supported.")))
 
-(declaim (ftype (function (T) (signed-byte 64)) double-float-bits))
+(declaim (ftype (function (T) (unsigned-byte 64)) double-float-bits))
 (defun double-float-bits (float)
   #+abcl
   (logior (system::double-float-low-bits float)
@@ -283,12 +283,13 @@
         #-x64-64 (logior (sys:typed-aref '(unsigned-byte 32) v 0)
                          (ash (sys:typed-aref '(unsigned-byte 32) v 4) 32)))
   #+sbcl
-  (logior (sb-kernel:double-float-low-bits float)
-          (ash (sb-kernel:double-float-high-bits float) 32))
+  (ldb (byte 64 0)
+       (logior (sb-kernel:double-float-low-bits float)
+               (ash (sb-kernel:double-float-high-bits float) 32)))
   #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
   (progn float (error "Implementation not supported.")))
 
-(declaim (ftype (function (T) (signed-byte 128)) long-float-bits))
+(declaim (ftype (function (T) (unsigned-byte 128)) long-float-bits))
 (defun long-float-bits (float)
   (declare (ignore float))
   (error "Implementation not supported."))
