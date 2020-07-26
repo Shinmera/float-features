@@ -229,12 +229,12 @@
     #-(or abcl ccl clasp clisp cmucl ecl sbcl)
     `(progn ,@body)))
 
-(declaim (ftype (function (T) (unsigned-byte 16)) short-float-bits))
+(declaim (ftype (function (T) (signed-byte 16)) short-float-bits))
 (defun short-float-bits (float)
   (declare (ignore float))
   (error "Implementation not supported."))
 
-(declaim (ftype (function (T) (unsigned-byte 32)) single-float-bits))
+(declaim (ftype (function (T) (signed-byte 32)) single-float-bits))
 (defun single-float-bits (float)
   #+abcl
   (system:single-float-bits float)
@@ -258,7 +258,7 @@
   #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
   (progn float (error "Implementation not supported.")))
 
-(declaim (ftype (function (T) (unsigned-byte 64)) double-float-bits))
+(declaim (ftype (function (T) (signed-byte 64)) double-float-bits))
 (defun double-float-bits (float)
   #+abcl
   (logior (system::double-float-low-bits float)
@@ -288,7 +288,7 @@
   #-(or abcl allegro ccl clasp cmucl lispworks sbcl)
   (progn float (error "Implementation not supported.")))
 
-(declaim (ftype (function (T) (unsigned-byte 128)) long-float-bits))
+(declaim (ftype (function (T) (signed-byte 128)) long-float-bits))
 (defun long-float-bits (float)
   (declare (ignore float))
   (error "Implementation not supported."))
