@@ -425,7 +425,9 @@
   #+clasp
   (ext:bits-to-single-float bits)
   #+cmucl
-  (kernel:make-single-float bits)
+  (flet ((s32 (x)
+           (logior x (- (mask-field (byte 1 31) x))) ))
+    (kernel:make-single-float (s32 bits)))
   #+lispworks
   (let ((v (sys:make-typed-aref-vector 4)))
     (declare (optimize speed (float 0) (safety 0)))
@@ -452,7 +454,10 @@
   #+clasp
   (ext:bits-to-double-float bits)
   #+cmucl
-  (kernel:make-double-float (ldb (byte 32 32) bits) (ldb (byte 32 0) bits))
+  (flet ((s32 (x)
+           (logior x (- (mask-field (byte 1 31) x))) ))
+    (kernel:make-double-float (s32 (ldb (byte 32 32) bits))
+                              (ldb (byte 32 0) bits)))
   #+lispworks
   (let ((v (sys:make-typed-aref-vector 8)))
     (declare (optimize speed (float 0) (safety 0)))
