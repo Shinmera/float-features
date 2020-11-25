@@ -11,6 +11,7 @@
     "The positive infinity for short-floats.
 
 Supported on:
+* ALLEGRO
 * CCL
 * CMUCL
 * ECL
@@ -25,6 +26,7 @@ Defaults to MOST-POSITIVE-SHORT-FLOAT on unsupported implementations.")
     "The negative infinity for short-floats.
 
 Supported on:
+* ALLEGRO
 * CCL
 * CMUCL
 * ECL
@@ -199,6 +201,19 @@ unsupported traps.")
 Supported on:
 * MEZZANO
 
+Supported (with 32bit short-float = single-float) on:
+* ALLEGRO
+* CCL
+* CMUCL
+* ECL
+* LISPWORKS (64-bit only. on 32-bit lw, short-float is not 16 or 32 bits)
+* SBCL
+
+On platforms with 32-bit short-float, low bits of significand are
+dropped without rounding, and out of range exponents are converted to
+infinities. All values returned by bits-short-float should convert
+back to the same bits.
+
 Defaults to signalling an error on unsupported implementations.")
   
   (function single-float-bits
@@ -243,6 +258,14 @@ Defaults to signalling an error on unsupported implementations.")
 
 Supported on:
 * MEZZANO
+
+Supported (with 32bit short-float = single-float) on:
+* ALLEGRO
+* CCL
+* CMUCL
+* ECL
+* LISPWORKS (64-bit only. on 32-bit lw, short-float is not 16 or 32 bits)
+* SBCL
 
 Defaults to signalling an error on unsupported implementations.")
   
