@@ -9,7 +9,8 @@ jobs:
     name: ${{ matrix.lisp }} on ${{ matrix.os }}
     strategy:
       matrix:
-        lisp: [sbcl-bin,sbcl,ccl,ccl32,ecl,clisp,allegro,cmucl,abcl]
+        # clisp doesn't run on ubuntu VMs currently
+        lisp: [sbcl-bin,sbcl,ccl,ccl32,ecl,allegro,cmucl,abcl]
         os: [ubuntu-latest]
       fail-fast: false
 
