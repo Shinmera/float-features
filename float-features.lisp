@@ -362,7 +362,8 @@
   #+mezzano
   (mezzano.extensions:ieee-binary32-to-single-float bits)
   #+sbcl
-  (sb-kernel:make-single-float (sb-c::mask-signed-field 32 bits))
+  (sb-kernel:make-single-float
+   (sb-c::mask-signed-field 32 (the (unsigned-byte 32) bits)))
   #-(or abcl allegro ccl clasp cmucl lispworks mezzano sbcl)
   (progn bits (error "Implementation not supported.")))
 
@@ -391,7 +392,7 @@
   (mezzano.extensions:ieee-binary64-to-double-float bits)
   #+sbcl
   (sb-kernel:make-double-float
-   (sb-c::mask-signed-field 32 (ldb (byte 32 32) bits))
+   (sb-c::mask-signed-field 32 (ldb (byte 32 32) (the (unsigned-byte 64) bits)))
    (ldb (byte 32 0) bits))
   #-(or abcl allegro ccl clasp cmucl lispworks mezzano sbcl)
   (progn bits (error "Implementation not supported.")))
