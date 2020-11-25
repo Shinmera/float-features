@@ -110,7 +110,8 @@
   (parachute:is = -1f0 (float-features:bits-single-float #xBF800000))
   (parachute:is = -1d0 (float-features:bits-double-float #xBFF0000000000000)))
 
-#+(or mezzano ecl sbcl cmucl allegro ccl (and 64-bit lispworks))
+;; ecl is missingl bits-single-float/single-float-bits used by short versions
+#+(or mezzano sbcl cmucl allegro ccl (and 64-bit lispworks))
 (parachute:define-test short-float-round-trip
   :compile-at :compile-time
   (parachute:true
@@ -131,7 +132,7 @@
           (expt 2 (- (ldb (byte 5 10) i) 15))
           (+ 1d0 (/ (ldb (byte 10 0) i) 1024))))))
 
-#+(or mezzano ecl sbcl cmucl allegro ccl (and 64-bit lispworks))
+#+(or mezzano sbcl cmucl allegro ccl (and 64-bit lispworks))
 (parachute:define-test short-float
   :compile-at :compile-time
   ;; examples from wikipedia
