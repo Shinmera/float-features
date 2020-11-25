@@ -104,7 +104,7 @@
          (values t error))
        (floating-point-invalid-operation (error)
          (values t error)))))
-
+#-ecl
 (parachute:define-test negative-bits-to-float
     :compile-at :compile-time
   (parachute:is = -1f0 (float-features:bits-single-float #xBF800000))
