@@ -109,3 +109,59 @@
     :compile-at :compile-time
   (parachute:is = -1f0 (float-features:bits-single-float #xBF800000))
   (parachute:is = -1d0 (float-features:bits-double-float #xBFF0000000000000)))
+
+#+(or mezzano ecl sbcl cmucl allegro ccl (and 64-bit lispworks))
+(parachute:define-test short-float-round-trip
+  :compile-at :compile-time
+  (parachute:true
+   (float-features:with-float-traps-masked t
+     (loop for i from 0 below 65536
+           always (= i (float-features:short-float-bits
+                        (float-features:bits-short-float i)))))))
+
+(defun short-bits-double (i)
+  (cond
+    ((zerop (ldb (byte 15 0) i))
+     0d0)
+    ((zerop (ldb (byte 5 10) i))
+     (* (if (logbitp 15 i) -1 1)
+        (expt 2 -14)
+        (+ 0d0 (/ (ldb (byte 10 0) i) 1024))))
+    (t (* (if (logbitp 15 i) -1 1)
+          (expt 2 (- (ldb (byte 5 10) i) 15))
+          (+ 1d0 (/ (ldb (byte 10 0) i) 1024))))))
+
+#+(or mezzano ecl sbcl cmucl allegro ccl (and 64-bit lispworks))
+(parachute:define-test short-float
+  :compile-at :compile-time
+  ;; examples from wikipedia
+  (parachute:is = 0.000000059604645s0 (float-features:bits-short-float 1))
+  (parachute:is = 0.000060975552s0 (float-features:bits-short-float #x03ff))
+  (parachute:is = 0.000061035156s0 (float-features:bits-short-float #x0400))
+  (parachute:is = 65504s0 (float-features:bits-short-float #x7bff))
+  (parachute:is = 0.99951172s0 (float-features:bits-short-float #x3bff))
+  (parachute:is = 1s0 (float-features:bits-short-float #x3c00))
+  (parachute:is = 1.00097656s0 (float-features:bits-short-float #x3c01))
+  (parachute:is = 0.33325195s0 (float-features:bits-short-float #x3555))
+  (parachute:is = -2s0 (float-features:bits-short-float #xc000))
+  (parachute:is = 0s0 (float-features:bits-short-float #x0000))
+  (parachute:is = -0s0 (float-features:bits-short-float #x8000))
+  (parachute:is = float-features:short-float-positive-infinity
+                (float-features:bits-short-float #x7c00))
+  (parachute:is = float-features:short-float-negative-infinity
+                (float-features:bits-short-float #xfc00))
+  (parachute:true (float-features:float-nan-p
+                   (float-features:bits-short-float #xffff)))
+  (parachute:true (float-features:float-nan-p
+                   (float-features:with-float-traps-masked t
+                     (float-features:bits-short-float #xfd00))))
+  ;; make sure all values are approximately right
+  (parachute:true
+   (loop for i below 65536
+         for s = (float-features:with-float-traps-masked t
+                   (float-features:bits-short-float i))
+         for f = (short-bits-double i)
+         always (or (float-features:float-nan-p s)
+                    (float-features:float-infinity-p s)
+                    (<= (abs (- f s))
+                        (abs (* f single-float-epsilon)))))))

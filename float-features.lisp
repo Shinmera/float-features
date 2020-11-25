@@ -261,12 +261,47 @@
 
 (declaim (ftype (function (T) (unsigned-byte 16)) short-float-bits))
 (defun short-float-bits (float)
-  #-mezzano
-  (declare (ignore float))
+  (declare (ignorable float))
   #+mezzano
   (mezzano.extensions:short-float-to-ieee-binary16 float)
-  #-mezzano
-  (error "Implementation not supported."))
+  #+(or ecl sbcl cmucl allegro ccl
+        (and 64-bit lispworks))
+  (let* ((bits (single-float-bits float))
+         (sign (ldb (byte 1 31) bits))
+         (exp (- (ldb (byte 8 23) bits) 127))
+         (sig (ldb (byte 23 0) bits)))
+    (cond
+      ((or (zerop float)
+           (< exp -24))
+       ;;underflow
+       (ash sign 15))
+      ((< exp -14)
+       ;; encode as denormal if possible
+       (logior (ash sign 15)
+               0
+               (ash (ldb (byte 11 13)
+                         (logior (ash 1 23) sig))
+                    (+ exp 14))))
+      ((< exp 16)
+       ;; encode directly
+       (logior (ash sign 15)
+               (ash (+ exp 15) 10)
+               (ash sig -13)))
+      ((zerop sig)
+       ;; infinity
+       (if (zerop sign)
+           #b0111110000000000
+           #b1111110000000000))
+      (t
+       ;;NaN
+       (logior (ash sign 15)
+               (ash #x1f 10)
+               (ldb (byte 10 13) sig)))))
+  ;; clisp short-float is 1+8+16
+  ;; 32bit lispworks 5+ is 1+8+??, lw4 only has double
+  ;; not sure about others?
+  #- (or mezzano ecl sbcl cmucl allegro ccl (and 64-bit lispworks))
+  (progn float (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) (unsigned-byte 32)) single-float-bits))
 (defun single-float-bits (float)
@@ -334,12 +369,50 @@
 
 (declaim (ftype (function (T) short-float) bits-short-float))
 (defun bits-short-float (bits)
-  #-mezzano
-  (declare (ignore bits))
+  (declare (ignorable bits))
   #+mezzano
   (mezzano.extensions:ieee-binary16-to-short-float bits)
-  #-mezzano
-  (error "Implementation not supported."))
+  #+ (or ecl sbcl cmucl allegro ccl
+         (and 64-bit lispworks))
+
+  (let ((sign (ldb (byte 1 15) bits))
+        (exp (ldb (byte 5 10) bits))
+        (sig (ldb (byte 10 0) bits)))
+    (if (= exp 31)
+        (cond
+          ((not (zerop sig))
+           ;; NaNs
+           (bits-single-float
+            (logior (ash sign 31)
+                    (ash #xff 23)
+                    ;; store in high-bit to preserve quiet/signalling
+                    (ash sig 13))))
+          ;; infinities
+          ((zerop sign)
+           single-float-positive-infinity)
+          (t
+           single-float-negative-infinity))
+        (cond
+          ((= 0 exp sig)
+           ;; +- 0
+           (if (zerop sign) 0s0 -0s0))
+          ((zerop exp)
+           ;; denormals -> single floats
+           (let ((d (- 11 (integer-length sig))))
+             (setf exp (- -14 d))
+             (setf sig (ldb (byte 11 0) (ash sig (1+ d))))
+             (bits-single-float
+              (logior (ash sign 31)
+                      (ash (+ exp 127) 23)
+                      (ash sig #.(- 23 11))))))
+          (t
+           ;; normal numbers
+           (bits-single-float
+            (logior (ash sign 31)
+                    (ash (+ exp #.(+ 127 -15)) 23)
+                    (ash sig #.(- 23 10))))))))
+    #- (or mezzano ecl sbcl cmucl allegro ccl (and 64-bit lispworks))
+  (progn bits (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) single-float) bits-single-float))
 (defun bits-single-float (bits)
