@@ -108,7 +108,9 @@
 (parachute:define-test negative-bits-to-float
     :compile-at :compile-time
   (parachute:is = -1f0 (float-features:bits-single-float #xBF800000))
-  (parachute:is = -1d0 (float-features:bits-double-float #xBFF0000000000000)))
+  (parachute:is = -1d0 (float-features:bits-double-float #xBFF0000000000000))
+  (parachute:is = #xBF800000 (float-features:single-float-bits -1f0))
+  (parachute:is = #xBFF0000000000000 (float-features:double-float-bits -1d0)))
 
 ;; ecl is missingl bits-single-float/single-float-bits used by short versions
 #+(or mezzano sbcl cmucl allegro ccl (and 64-bit lispworks))
