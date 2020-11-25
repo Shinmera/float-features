@@ -273,7 +273,7 @@
          (exp (- (ldb (byte 8 23) bits) 127))
          (sig (ldb (byte 23 0) bits)))
     (cond
-      ((or (zerop float)
+      ((or (eql 0s0 float)
            (< exp -24))
        ;;underflow
        (ash sign 15))
