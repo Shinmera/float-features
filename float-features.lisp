@@ -308,7 +308,7 @@
 (declaim (ftype (function (T) (unsigned-byte 32)) single-float-bits))
 (defun single-float-bits (float)
   #+abcl
-  (system:single-float-bits float)
+  (ldb (byte 32 0) (system:single-float-bits float))
   #+allegro
   (multiple-value-bind (high low) (excl:single-float-to-shorts float)
     (logior low (ash high 32)))
@@ -317,7 +317,7 @@
   #+clasp
   (ext:single-float-to-bits float)
   #+cmucl
-  (kernel:single-float-bits float)
+  (ldb (byte 32 0) (kernel:single-float-bits float))
   #+lispworks
   (let ((v (sys:make-typed-aref-vector 4)))
     (declare (optimize (speed 3) (float 0) (safety 0)))
@@ -345,8 +345,9 @@
   #+clasp
   (ext:double-float-to-bits float)
   #+cmucl
-  (logior (kernel:double-float-low-bits float)
-          (ash (kernel:double-float-high-bits float) 32))
+  (ldb (byte 64 0)
+   (logior (kernel:double-float-low-bits float)
+           (ash (kernel:double-float-high-bits float) 32)))
   #+lispworks
   (let ((v (sys:make-typed-aref-vector 8)))
     (declare (optimize (speed 3) (float 0) (safety 0)))
