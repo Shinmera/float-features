@@ -311,7 +311,7 @@
   (ldb (byte 32 0) (system:single-float-bits float))
   #+allegro
   (multiple-value-bind (high low) (excl:single-float-to-shorts float)
-    (logior low (ash high 32)))
+    (logior low (ash high 16)))
   #+ccl
   (ccl::single-float-bits float)
   #+clasp
