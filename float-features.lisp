@@ -39,7 +39,8 @@
   #+mkcl ext:short-float-positive-infinity
   #+sbcl sb-ext:short-float-positive-infinity
   #+lispworks 1S++0
-  #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
+  #+allegro (coerce excl:*infinity-single* 'short-float)
+  #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks allegro)
   most-positive-short-float)
 
 (defconstant short-float-negative-infinity
@@ -51,7 +52,8 @@
   #+mkcl ext:short-float-negative-infinity
   #+sbcl sb-ext:short-float-negative-infinity
   #+lispworks -1S++0
-  #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
+  #+allegro (coerce excl:*negative-infinity-single* 'short-float)
+  #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks allegro)
   most-negative-short-float)
 
 (defconstant single-float-positive-infinity
