@@ -57,7 +57,7 @@
   most-negative-short-float)
 
 (defconstant single-float-positive-infinity
-  #+abcl extensions:single-float-negative-infinity
+  #+abcl extensions:single-float-positive-infinity
   #+allegro excl:*infinity-single*
   #+ccl 1F++0
   #+clasp ext:single-float-positive-infinity
@@ -85,7 +85,7 @@
   most-negative-single-float)
 
 (defconstant double-float-positive-infinity
-  #+abcl extensions:double-float-negative-infinity
+  #+abcl extensions:double-float-positive-infinity
   #+allegro excl:*infinity-double*
   #+ccl 1D++0
   #+clasp ext:double-float-positive-infinity
