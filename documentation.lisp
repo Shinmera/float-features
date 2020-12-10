@@ -37,6 +37,17 @@ Supported on:
 
 Defaults to MOST-NEGATIVE-SHORT-FLOAT on unsupported implementations.")
 
+  (variable short-float-nan
+    "A positive quiet NaN value with zero-cleared payload for short-floats.
+This value should NOT be used for comparison with a float value for the pupose of testing NaN
+because NaN has unused bits (called payload) which are explicitly allowed to store additional information.
+Comparing this value with other NaN representations via = will fail.
+To test if a number is a NaN, use FLOAT-NAN-P.
+
+It is supported on implementations which support BITS-SHORT-FLOAT.
+
+Defaults to MOST-POSITIVE-SHORT-FLOAT on unsupported implementations.")
+
   (variable single-float-positive-infinity
     "The positive infinity for single-floats.
 
@@ -68,6 +79,17 @@ Supported on:
 * SBCL
 
 Defaults to MOST-NEGATIVE-SINGLE-FLOAT on unsupported implementations.")
+
+  (variable single-float-nan
+    "A positive quiet NaN value with zero-cleared payload for single-floats.
+This value should NOT be used for comparison with a float value for the pupose of testing NaN
+because NaN has unused bits (called payload) which are explicitly allowed to store additional information.
+Comparing this value with other NaN representations via = will fail.
+To test if a number is a NaN, use FLOAT-NAN-P.
+
+It is supported on implementations which support BITS-SINGLE-FLOAT.
+
+Defaults to MOST-POSITIVE-SINGLE-FLOAT on unsupported implementations.")
 
   (variable double-float-positive-infinity
     "The positive infinity for double-floats.
@@ -101,6 +123,17 @@ Supported on:
 
 Defaults to MOST-NEGATIVE-DOUBLE-FLOAT on unsupported implementations.")
 
+  (variable double-float-nan
+    "A positive quiet NaN value with zero-cleared payload for double-floats.
+This value should NOT be used for comparison with a float value for the pupose of testing NaN
+because NaN has unused bits (called payload) which are explicitly allowed to store additional information.
+Comparing this value with other NaN representations via = will fail.
+To test if a number is a NaN, use FLOAT-NAN-P.
+
+It is supported on implementations which support BITS-DOUBLE-FLOAT.
+
+Defaults to MOST-POSITIVE-DOUBLE-FLOAT on unsupported implementations.")
+
   (variable long-float-positive-infinity
     "The positive infinity for long-floats.
 
@@ -128,6 +161,17 @@ Supported on:
 * SBCL
 
 Defaults to MOST-NEGATIVE-LONG-FLOAT on unsupported implementations.")
+
+  (variable long-float-nan
+    "A positive quiet NaN value with zero-cleared payload for long-floats.
+This value should NOT be used for comparison with a float value for the pupose of testing NaN
+because NaN has unused bits (called payload) which are explicitly allowed to store additional information.
+Comparing this value with other NaN representations via = will fail.
+To test if a number is a NaN, use FLOAT-NAN-P.
+
+It is supported on implementations which support BITS-LONG-FLOAT.
+
+Defaults to MOST-POSITIVE-LONG-FLOAT on unsupported implementations.")
   
   (function float-infinity-p
     "Returns T if the given float is an infinity, NIL otherwise.
