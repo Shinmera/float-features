@@ -140,6 +140,9 @@
   #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
   most-negative-long-float)
 
+(declaim (inline float-infinity-p
+                 float-nan-p))
+
 (defun float-infinity-p (float)
   #+abcl (system:float-infinity-p float)
   #+allegro (excl:infinityp float)
@@ -264,6 +267,15 @@
     (declare (ignore traps))
     #-(or abcl ccl clasp clisp cmucl ecl mezzano sbcl)
     `(progn ,@body)))
+
+(declaim (inline short-float-bits
+                 single-float-bits
+                 double-float-bits
+                 long-float-bits
+                 bits-short-float
+                 bits-single-float
+                 bits-double-float
+                 bits-long-float))
 
 (declaim (ftype (function (T) (unsigned-byte 16)) short-float-bits))
 (defun short-float-bits (float)
