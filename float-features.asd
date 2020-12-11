@@ -13,6 +13,7 @@
   :homepage "https://github.com/Shinmera/float-features"
   :serial T
   :components ((:file "float-features")
-               (:file "documentation"))
+               (:file "documentation")
+               (:file "nan"))
   :in-order-to ((asdf:test-op (asdf:test-op :float-features-test)))
   :depends-on (:documentation-utils))
