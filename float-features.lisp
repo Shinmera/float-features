@@ -228,19 +228,19 @@
        ,@body)
     #+ecl
     (let ((previous (gensym "PREVIOUS")))
-      `(let ((,previous (si::trap-fpe :last T)))
+      `(let ((,previous (si::trap-fpe 'last NIL)))
          (unwind-protect
               (progn
                 ,@(loop for trap in traps
                         for keyword = (case trap
-                                        (:underlow :floating-point-underflow)
-                                        (:overflow :floating-point-overflow)
-                                        (:inexact :floating-point-inexact)
-                                        (:invalid :floating-point-invalid)
-                                        (:divide-by-zero :division-by-zero))
-                        when keyword collect `(si::trap-fpe ,keyword T))
+                                        (:underflow 'floating-point-underflow)
+                                        (:overflow 'floating-point-overflow)
+                                        (:inexact 'floating-point-inexact)
+                                        (:invalid 'floating-point-invalid)
+                                        (:divide-by-zero 'division-by-zero))
+                        when keyword collect `(si::trap-fpe ,keyword NIL))
                 NIL ,@body)
-           (si::trap-fpe ,previous NIL))))
+           (si::trap-fpe ,previous T))))
     #+clasp
      `(ext:with-float-traps-masked ,traps
        ,@body)
