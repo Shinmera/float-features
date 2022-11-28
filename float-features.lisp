@@ -281,6 +281,34 @@
                  bits-double-float
                  bits-long-float))
 
+(declaim (ftype (function (T) (unsigned-byte 32)) single-float-bits))
+(defun single-float-bits (float)
+  #+abcl
+  (ldb (byte 32 0) (system:single-float-bits float))
+  #+allegro
+  (multiple-value-bind (high low) (excl:single-float-to-shorts float)
+    (logior low (ash high 16)))
+  #+ccl
+  (ccl::single-float-bits float)
+  #+clasp
+  (ext:single-float-to-bits float)
+  #+cmucl
+  (ldb (byte 32 0) (kernel:single-float-bits float))
+  #+ecl-float-bit-translations
+  (si:single-float-bits float)
+  #+lispworks
+  (let ((v (sys:make-typed-aref-vector 4)))
+    (declare (optimize (speed 3) (float 0) (safety 0)))
+    (declare (dynamic-extent v))
+    (setf (sys:typed-aref 'single-float v 0) float)
+    (sys:typed-aref '(unsigned-byte 32) v 0))
+  #+mezzano
+  (mezzano.extensions:single-float-to-ieee-binary32 float)
+  #+sbcl
+  (ldb (byte 32 0) (sb-kernel:single-float-bits float))
+  #-(or abcl allegro ccl clasp cmucl ecl-float-bit-translations lispworks mezzano sbcl)
+  (progn float (error "Implementation not supported.")))
+
 (declaim (ftype (function (T) (unsigned-byte 16)) short-float-bits))
 (defun short-float-bits (float)
   (declare (ignorable float))
@@ -323,34 +351,6 @@
   ;; 32bit lispworks 5+ is 1+8+??, lw4 only has double
   ;; not sure about others?
   #- (or mezzano ecl sbcl cmucl allegro ccl (and 64-bit lispworks))
-  (progn float (error "Implementation not supported.")))
-
-(declaim (ftype (function (T) (unsigned-byte 32)) single-float-bits))
-(defun single-float-bits (float)
-  #+abcl
-  (ldb (byte 32 0) (system:single-float-bits float))
-  #+allegro
-  (multiple-value-bind (high low) (excl:single-float-to-shorts float)
-    (logior low (ash high 16)))
-  #+ccl
-  (ccl::single-float-bits float)
-  #+clasp
-  (ext:single-float-to-bits float)
-  #+cmucl
-  (ldb (byte 32 0) (kernel:single-float-bits float))
-  #+ecl-float-bit-translations
-  (si:single-float-bits float)
-  #+lispworks
-  (let ((v (sys:make-typed-aref-vector 4)))
-    (declare (optimize (speed 3) (float 0) (safety 0)))
-    (declare (dynamic-extent v))
-    (setf (sys:typed-aref 'single-float v 0) float)
-    (sys:typed-aref '(unsigned-byte 32) v 0))
-  #+mezzano
-  (mezzano.extensions:single-float-to-ieee-binary32 float)
-  #+sbcl
-  (ldb (byte 32 0) (sb-kernel:single-float-bits float))
-  #-(or abcl allegro ccl clasp cmucl ecl-float-bit-translations lispworks mezzano sbcl)
   (progn float (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) (unsigned-byte 64)) double-float-bits))
