@@ -10,7 +10,7 @@
   :author "Nicolas Hafner <shinmera@tymoon.eu>"
   :maintainer "Nicolas Hafner <shinmera@tymoon.eu>"
   :description "Tests for Float Features"
-  :perform (asdf:test-op (op c) (uiop:symbol-call :parachute :test :float-features-test))
+  :perform (asdf:test-op (op c) (uiop:symbol-call :parachute :test :float-features-tests))
   :homepage "https://github.com/Shinmera/float-features"
   :serial T
   :components ((:file "test-float-features"))
