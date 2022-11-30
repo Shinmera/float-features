@@ -181,11 +181,6 @@
   #-(or abcl allegro ccl clasp cmucl ecl mezzano sbcl lispworks)
   (/= float float))
 
-(defun keep (list &rest keeps)
-  (loop for item in list
-        when (find item keeps)
-        collect item))
-
 (defmacro with-float-traps-masked (traps &body body)
   (let ((traps (etypecase traps
                  ((eql T) '(:underflow :overflow :inexact :invalid :divide-by-zero :denormalized-operand))
@@ -196,7 +191,7 @@
          (unwind-protect
               (progn
                 (extensions:set-floating-point-modes
-                 :traps ',(keep traps :overflow :underflow))
+                 :traps ',(intersection traps '(:overflow :underflow)))
                 NIL ,@body)
            (apply #'extensions:set-floating-point-modes ,previous))))
     #+ccl
@@ -397,6 +392,36 @@
   #-(or ecl-float-bit-translations)
   (error "Implementation not supported."))
 
+(declaim (ftype (function (T) single-float) bits-single-float))
+(defun bits-single-float (bits)
+  #+abcl
+  (system:make-single-float bits)
+  #+allegro
+  (excl:shorts-to-single-float (ldb (byte 16 16) bits) (ldb (byte 16 0) bits))
+  #+ccl
+  (ccl::host-single-float-from-unsigned-byte-32 bits)
+  #+clasp
+  (ext:bits-to-single-float bits)
+  #+cmucl
+  (flet ((s32 (x)
+           (logior x (- (mask-field (byte 1 31) x))) ))
+    (kernel:make-single-float (s32 bits)))
+  #+ecl-float-bit-translations
+  (si:bits-single-float bits)
+  #+lispworks
+  (let ((v (sys:make-typed-aref-vector 4)))
+    (declare (optimize speed (float 0) (safety 0)))
+    (declare (dynamic-extent v))
+    (setf (sys:typed-aref '(unsigned-byte 32) v 0) bits)
+    (sys:typed-aref 'single-float v 0))
+  #+mezzano
+  (mezzano.extensions:ieee-binary32-to-single-float bits)
+  #+sbcl
+  (sb-kernel:make-single-float
+   (sb-c::mask-signed-field 32 (the (unsigned-byte 32) bits)))
+  #-(or abcl allegro ccl clasp cmucl ecl-float-bit-translations lispworks mezzano sbcl)
+  (progn bits (error "Implementation not supported.")))
+  
 (declaim (ftype (function (T) short-float) bits-short-float))
 (defun bits-short-float (bits)
   (declare (ignorable bits))
@@ -440,36 +465,6 @@
                     (ash (+ exp #.(+ 127 -15)) 23)
                     (ash sig #.(- 23 10))))))))
   #-(or allegro ccl cmucl ecl mezzano sbcl (and 64-bit lispworks))
-  (progn bits (error "Implementation not supported.")))
-
-(declaim (ftype (function (T) single-float) bits-single-float))
-(defun bits-single-float (bits)
-  #+abcl
-  (system:make-single-float bits)
-  #+allegro
-  (excl:shorts-to-single-float (ldb (byte 16 16) bits) (ldb (byte 16 0) bits))
-  #+ccl
-  (ccl::host-single-float-from-unsigned-byte-32 bits)
-  #+clasp
-  (ext:bits-to-single-float bits)
-  #+cmucl
-  (flet ((s32 (x)
-           (logior x (- (mask-field (byte 1 31) x))) ))
-    (kernel:make-single-float (s32 bits)))
-  #+ecl-float-bit-translations
-  (si:bits-single-float bits)
-  #+lispworks
-  (let ((v (sys:make-typed-aref-vector 4)))
-    (declare (optimize speed (float 0) (safety 0)))
-    (declare (dynamic-extent v))
-    (setf (sys:typed-aref '(unsigned-byte 32) v 0) bits)
-    (sys:typed-aref 'single-float v 0))
-  #+mezzano
-  (mezzano.extensions:ieee-binary32-to-single-float bits)
-  #+sbcl
-  (sb-kernel:make-single-float
-   (sb-c::mask-signed-field 32 (the (unsigned-byte 32) bits)))
-  #-(or abcl allegro ccl clasp cmucl ecl-float-bit-translations lispworks mezzano sbcl)
   (progn bits (error "Implementation not supported.")))
 
 (declaim (ftype (function (T) double-float) bits-double-float))
