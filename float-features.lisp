@@ -169,7 +169,7 @@
 
 (defun float-nan-p (float)
   #+abcl (system:float-nan-p float)
-  #+allegro (excl:nanp float)
+  #+allegro (and (excl:nanp float) t)
   #+ccl (and (ccl::nan-or-infinity-p float)
              (not (ccl::infinity-p float)))
   #+clasp (ext:float-nan-p float)
