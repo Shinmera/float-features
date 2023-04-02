@@ -376,7 +376,7 @@
           #+(and 32-bit (not big-endian)) (logior (sys:typed-aref '(unsigned-byte 32) v 0)
                                                   (ash (sys:typed-aref '(unsigned-byte 32) v 4) 32))
           #+(and 32-bit big-endian) (logior (sys:typed-aref '(unsigned-byte 32) v 4)
-                                            (ash (sys:typed-aref '(unsigned-byte 32) v 0) 32))))
+                                            (ash (sys:typed-aref '(unsigned-byte 32) v 0) 32)))
   #+mezzano
   (mezzano.extensions:double-float-to-ieee-binary64 float)
   #+sbcl
