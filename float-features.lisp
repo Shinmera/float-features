@@ -223,7 +223,7 @@
        ,@body)
     #+ecl
     (let ((previous (gensym "PREVIOUS")))
-      `(let ((,previous (si::trap-fpe 'last NIL)))
+      `(let ((,previous (ext:trap-fpe 'last NIL)))
          (unwind-protect
               (progn
                 ,@(loop for trap in traps
@@ -233,9 +233,9 @@
                                         (:inexact 'floating-point-inexact)
                                         (:invalid 'floating-point-invalid)
                                         (:divide-by-zero 'division-by-zero))
-                        when keyword collect `(si::trap-fpe ,keyword NIL))
+                        when keyword collect `(ext:trap-fpe ',keyword NIL))
                 NIL ,@body)
-           (si::trap-fpe ,previous T))))
+           (ext:trap-fpe ,previous T))))
     #+clasp
      `(ext:with-float-traps-masked ,traps
        ,@body)
