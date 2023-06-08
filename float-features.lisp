@@ -231,7 +231,7 @@
                                         (:underflow 'floating-point-underflow)
                                         (:overflow 'floating-point-overflow)
                                         (:inexact 'floating-point-inexact)
-                                        (:invalid 'floating-point-invalid)
+                                        (:invalid 'floating-point-invalid-operation)
                                         (:divide-by-zero 'division-by-zero))
                         when keyword collect `(ext:trap-fpe ',keyword NIL))
                 NIL ,@body)
