@@ -1,9 +1,3 @@
-#|
- This file is a part of float-features
- (c) 2018 Shirakumo http://tymoon.eu (shinmera@tymoon.eu)
- Author: Nicolas Hafner <shinmera@tymoon.eu>
-|#
-
 (defpackage #:float-features
   (:nicknames #:org.shirakumo.float-features)
   (:use #:cl)
