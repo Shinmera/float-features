@@ -233,6 +233,29 @@ Supported on:
 Defaults to a progn on unsupported implementations and ignores
 unsupported traps.")
 
+    (function with-rounding-mode
+    "Temporarily set rounding mode when execute body.
+
+The following modes are recognised:
+
+  :nearest Round to nearest, ties to even
+  :positive Round toward positive infinity
+  :negative Round toward negative infinity
+  :zero Round toward zero
+
+Note that many compilers would by default try to fold floating point
+expressions into constants before the rounding mode can take effect.
+It is advisory to check disassembled functions to see if that is the
+case when the result is not expected.
+
+Supported on:
+* CCL
+* CMUCL
+* MEZZANO
+* SBCL
+
+Defaults to a progn on unsupported implementations.")
+
   (function short-float-bits
     "Returns the bit representation of the short-float as an (unsigned-byte 16).
 
