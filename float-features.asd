@@ -10,4 +10,4 @@
                (:file "documentation")
                (:file "nan"))
   :in-order-to ((asdf:test-op (asdf:test-op :float-features-tests)))
-  :depends-on (:documentation-utils))
+  :depends-on (:trivial-features :documentation-utils))
