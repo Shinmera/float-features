@@ -17,6 +17,9 @@
    #:float-infinity-p
    #:float-nan-p
    #:with-float-traps-masked
+   #:get-rounding-mode
+   #:set-rounding-mode
+   #:with-rounding-mode
    #:short-float-bits
    #:single-float-bits
    #:double-float-bits
@@ -261,52 +264,53 @@
     #-(or abcl ccl clasp clisp cmucl ecl mezzano sbcl)
     `(progn ,@body)))
 
-(defmacro with-rounding-mode (mode &body body)
+(defmacro get-rounding-mode ()
+  #+ccl
+  `(ccl:get-fpu-mode :rounding-mode)
+  #+cmucl
+  `(getf (extensions:get-floating-point-modes) :rounding-mode)
+  #+mezzano
+  `(getf (mezzano.runtime::get-fpu-mode) :rounding-mode)
+  #+sbcl
+  `(getf (sb-int:get-floating-point-modes) :rounding-mode)
+  #-(or ccl cmucl mezzano sbcl)
+  `(error "Implementation not supported."))
+
+(defmacro set-rounding-mode (mode)
   #+(or ccl cmucl mezzano sbcl)
-  (let ((previous (gensym "PREVIOUS"))
-        (mode #+ccl
+  (let ((mode #+ccl
               (case mode
-                    (:nearest :nearest)
-                    (:positive :positive)
-                    (:negative :negative)
-                    (:zero :zero))
+                (:nearest :nearest)
+                (:positive :positive)
+                (:negative :negative)
+                (:zero :zero)
+                (t mode))
               #+(or cmucl sbcl mezzano)
               (case mode
-                    (:nearest :nearest)
-                    (:positive :positive-infinity)
-                    (:negative :negative-infinity)
-                    (:zero :zero))))
-    `(let ((,previous #+ccl
-                      (ccl:get-fpu-mode :rounding-mode)
-                      #+cmucl
-                      (getf (extensions:get-floating-point-modes) :rounding-mode)
-                      #+mezzano
-                      (getf (mezzano.runtime::get-fpu-mode) :rounding-mode)
-                      #+sbcl
-                      (getf (sb-int:get-floating-point-modes) :rounding-mode)))
+                (:nearest :nearest)
+                (:positive :positive-infinity)
+                (:negative :negative-infinity)
+                (:zero :zero)
+                (t mode))))
+    #+ccl
+    `(ccl:set-fpu-mode :rounding-mode ,mode)
+    #+cmucl
+    `(extensions:set-floating-point-modes :rounding-mode ,mode)
+    #+mezzano
+    `(mezzano.runtime::set-fpu-mode :rounding-mode ,mode)
+    #+sbcl
+    `(sb-int:set-floating-point-modes :rounding-mode ,mode))
+  #-(or ccl cmucl mezzano sbcl)
+  `(error "Implementation not supported."))
+
+(defmacro with-rounding-mode (mode &body body)
+  (let ((previous (gensym "PREVIOUS")))
+    `(let ((,previous (get-rounding-mode)))
        (unwind-protect
             (progn
-              #+ccl
-              (ccl:set-fpu-mode :rounding-mode ,mode)
-              #+cmucl
-              (extensions:set-floating-point-modes :rounding-mode ,mode)
-              #+mezzano
-              (mezzano.runtime::set-fpu-mode :rounding-mode ,mode)
-              #+sbcl
-              (sb-int:set-floating-point-modes :rounding-mode ,mode)
-              NIL ,@body)
-         #+ccl
-         (ccl:set-fpu-mode :rounding-mode ,previous)
-         #+cmucl
-         (extensions:set-floating-point-modes :rounding-mode ,previous)
-         #+mezzano
-         (mezzano.runtime::set-fpu-mode :rounding-mode ,previous)
-         #+sbcl
-         (sb-int:set-floating-point-modes :rounding-mode ,previous))))
-  #-(or ccl cmucl mezzano sbcl)
-  (declare (ignore traps))
-  #-(or ccl cmucl mezzano sbcl)
-  `(progn ,@body))
+              (set-rounding-mode ,mode)
+              ,@body)
+            (set-rounding-mode ,previous)))))
 
 (declaim (inline short-float-bits
                  single-float-bits
