@@ -172,14 +172,13 @@
                       (<= (abs (- f s))
                           (abs (* f single-float-epsilon))))))))
 
-(defun add-round-up (x y) (with-rounding-mode :positive (+ x y)))
-(defun add-round-down (x y) (with-rounding-mode :negative (+ x y)))
-(defun add-round-zero (x y) (with-rounding-mode :zero (+ x y)))
-(defun add-round-near (x y) (with-rounding-mode :nearest (+ x y)))
+;; These are necessary to avoid the constant folding
+(defun add (x y) (+ x y))
 
 (parachute:define-test rounding-modes
   :compile-at :compile-time
   (parachute:skip-on (ecl abcl allegro clasp lispworks) "not implemented"
-    (parachute:is > (add-round-up 3.2D0 1.3D0) (add-round-down 3.2D0 1.3D0))
-    (parachute:is = (add-round-down 3.2D0 1.3D0) (add-round-zero 3.2D0 1.3D0))
-    (parachute:is = (add-round-near 3.2D0 1.3D0) (add-round-zero 3.2D0 1.3D0))))
+    (parachute:is = 4.500000000000001d0 (float-features:with-rounding-mode :positive (add 3.2D0 1.3D0)))
+    (parachute:is = 4.5d0 (float-features:with-rounding-mode :negative (add 3.2D0 1.3D0)))
+    (parachute:is = 4.5d0 (float-features:with-rounding-mode :nearest (add 3.2D0 1.3D0)))
+    (parachute:is = 4.5d0 (float-features:with-rounding-mode :zero (add 3.2D0 1.3D0)))))
