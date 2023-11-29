@@ -17,6 +17,7 @@
    #:float-infinity-p
    #:float-nan-p
    #:with-float-traps-masked
+   #:with-rounding-mode
    #:short-float-bits
    #:single-float-bits
    #:double-float-bits

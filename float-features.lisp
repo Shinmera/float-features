@@ -278,7 +278,7 @@
   #-(or ccl cmucl mezzano sbcl)
   (declare (ignore traps))
   #-(or ccl cmucl mezzano sbcl)
-  `(progn ,@body))
+  `(error "Implementation not supported."))
 
 (declaim (inline short-float-bits
                  single-float-bits

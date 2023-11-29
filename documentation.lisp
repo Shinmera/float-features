@@ -254,7 +254,7 @@ Supported on:
 * MEZZANO
 * SBCL
 
-Defaults to a progn on unsupported implementations.")
+Signals an error on unsupported implementations.")
 
   (function short-float-bits
     "Returns the bit representation of the short-float as an (unsigned-byte 16).
