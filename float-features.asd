@@ -8,7 +8,7 @@
   :serial T
   :components ((:file "package")
                (:file "float-features")
-               (:file "nan")
+               (:file "constants")
                (:file "documentation"))
   :in-order-to ((asdf:test-op (asdf:test-op :float-features-tests)))
   :depends-on (:trivial-features :documentation-utils))
