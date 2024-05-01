@@ -43,7 +43,7 @@
 
 (defmacro with-float-traps-masked (traps &body body)
   (let ((traps (etypecase traps
-                 ((eql T) '(:underflow :overflow :inexact :invalid :divide-by-zero :denormalized-operand))
+                 ((eql t) '(:underflow :overflow :inexact :invalid :divide-by-zero :denormalized-operand))
                  (list traps))))
     #+abcl
     (let ((previous (gensym "PREVIOUS")))
