@@ -1,144 +1,144 @@
 (in-package #:org.shirakumo.float-features)
 
-(defconstant short-float-positive-infinity
+(defconstant SHORT-FLOAT-POSITIVE-INFINITY
   #+ccl 1S++0
-  #+clasp ext:short-float-positive-infinity
-  #+cmucl extensions:short-float-positive-infinity
-  #+ecl ext:short-float-positive-infinity
-  #+mezzano mezzano.extensions:short-float-positive-infinity
-  #+mkcl ext:short-float-positive-infinity
-  #+sbcl sb-ext:short-float-positive-infinity
+  #+clasp EXT:SHORT-FLOAT-POSITIVE-INFINITY
+  #+cmucl EXTENSIONS:SHORT-FLOAT-POSITIVE-INFINITY
+  #+ecl EXT:SHORT-FLOAT-POSITIVE-INFINITY
+  #+mezzano MEZZANO.EXTENSIONS:SHORT-FLOAT-POSITIVE-INFINITY
+  #+mkcl EXT:SHORT-FLOAT-POSITIVE-INFINITY
+  #+sbcl SB-EXT:SHORT-FLOAT-POSITIVE-INFINITY
   #+lispworks 1S++0
   #+allegro (coerce excl:*infinity-single* 'short-float)
   #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks allegro)
-  most-positive-short-float)
+  MOST-POSITIVE-SHORT-FLOAT)
 
-(defconstant short-float-negative-infinity
+(defconstant SHORT-FLOAT-NEGATIVE-INFINITY
   #+ccl -1S++0
-  #+clasp ext:short-float-negative-infinity
-  #+cmucl extensions:short-float-negative-infinity
-  #+ecl ext:short-float-negative-infinity
-  #+mezzano mezzano.extensions:short-float-negative-infinity
-  #+mkcl ext:short-float-negative-infinity
-  #+sbcl sb-ext:short-float-negative-infinity
+  #+clasp EXT:SHORT-FLOAT-NEGATIVE-INFINITY
+  #+cmucl EXTENSIONS:SHORT-FLOAT-NEGATIVE-INFINITY
+  #+ecl EXT:SHORT-FLOAT-NEGATIVE-INFINITY
+  #+mezzano MEZZANO.EXTENSIONS:SHORT-FLOAT-NEGATIVE-INFINITY
+  #+mkcl EXT:SHORT-FLOAT-NEGATIVE-INFINITY
+  #+sbcl SB-EXT:SHORT-FLOAT-NEGATIVE-INFINITY
   #+lispworks -1S++0
   #+allegro (coerce excl:*negative-infinity-single* 'short-float)
   #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks allegro)
-  most-negative-short-float)
+  MOST-NEGATIVE-SHORT-FLOAT)
 
-(defconstant single-float-positive-infinity
-  #+abcl extensions:single-float-positive-infinity
+(defconstant SINGLE-FLOAT-POSITIVE-INFINITY
+  #+abcl EXTENSIONS:SINGLE-FLOAT-POSITIVE-INFINITY
   #+allegro excl:*infinity-single*
   #+ccl 1F++0
-  #+clasp ext:single-float-positive-infinity
-  #+cmucl extensions:single-float-positive-infinity
-  #+ecl ext:single-float-positive-infinity
-  #+mezzano mezzano.extensions:single-float-positive-infinity
-  #+mkcl mkcl:single-float-positive-infinity
-  #+sbcl sb-ext:single-float-positive-infinity
+  #+clasp EXT:SINGLE-FLOAT-POSITIVE-INFINITY
+  #+cmucl EXTENSIONS:SINGLE-FLOAT-POSITIVE-INFINITY
+  #+ecl EXT:SINGLE-FLOAT-POSITIVE-INFINITY
+  #+mezzano MEZZANO.EXTENSIONS:SINGLE-FLOAT-POSITIVE-INFINITY
+  #+mkcl MKCL:SINGLE-FLOAT-POSITIVE-INFINITY
+  #+sbcl SB-EXT:SINGLE-FLOAT-POSITIVE-INFINITY
   #+lispworks 1F++0
   #-(or abcl allegro ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
-  most-positive-single-float)
+  MOST-POSITIVE-SINGLE-FLOAT)
 
-(defconstant single-float-negative-infinity
-  #+abcl extensions:single-float-negative-infinity
+(defconstant SINGLE-FLOAT-NEGATIVE-INFINITY
+  #+abcl EXTENSIONS:SINGLE-FLOAT-NEGATIVE-INFINITY
   #+allegro excl:*negative-infinity-single*
   #+ccl -1F++0
-  #+clasp ext:single-float-negative-infinity
-  #+cmucl extensions:single-float-negative-infinity
-  #+ecl ext:single-float-negative-infinity
-  #+mezzano mezzano.extensions:single-float-negative-infinity
-  #+mkcl mkcl:single-float-negative-infinity
-  #+sbcl sb-ext:single-float-negative-infinity
+  #+clasp EXT:SINGLE-FLOAT-NEGATIVE-INFINITY
+  #+cmucl EXTENSIONS:SINGLE-FLOAT-NEGATIVE-INFINITY
+  #+ecl EXT:SINGLE-FLOAT-NEGATIVE-INFINITY
+  #+mezzano MEZZANO.EXTENSIONS:SINGLE-FLOAT-NEGATIVE-INFINITY
+  #+mkcl MKCL:SINGLE-FLOAT-NEGATIVE-INFINITY
+  #+sbcl SB-EXT:SINGLE-FLOAT-NEGATIVE-INFINITY
   #+lispworks -1F++0
   #-(or abcl allegro ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
-  most-negative-single-float)
+  MOST-NEGATIVE-SINGLE-FLOAT)
 
-(defconstant double-float-positive-infinity
-  #+abcl extensions:double-float-positive-infinity
+(defconstant DOUBLE-FLOAT-POSITIVE-INFINITY
+  #+abcl EXTENSIONS:DOUBLE-FLOAT-POSITIVE-INFINITY
   #+allegro excl:*infinity-double*
   #+ccl 1D++0
-  #+clasp ext:double-float-positive-infinity
-  #+cmucl extensions:double-float-positive-infinity
-  #+ecl ext:double-float-positive-infinity
-  #+mezzano mezzano.extensions:double-float-positive-infinity
-  #+mkcl mkcl:double-float-positive-infinity
-  #+sbcl sb-ext:double-float-positive-infinity
+  #+clasp EXT:DOUBLE-FLOAT-POSITIVE-INFINITY
+  #+cmucl EXTENSIONS:DOUBLE-FLOAT-POSITIVE-INFINITY
+  #+ecl EXT:DOUBLE-FLOAT-POSITIVE-INFINITY
+  #+mezzano MEZZANO.EXTENSIONS:DOUBLE-FLOAT-POSITIVE-INFINITY
+  #+mkcl MKCL:DOUBLE-FLOAT-POSITIVE-INFINITY
+  #+sbcl SB-EXT:DOUBLE-FLOAT-POSITIVE-INFINITY
   #+lispworks 1D++0
   #-(or abcl allegro ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
-  most-positive-double-float)
+  MOST-POSITIVE-DOUBLE-FLOAT)
 
-(defconstant double-float-negative-infinity
-  #+abcl extensions:double-float-negative-infinity
+(defconstant DOUBLE-FLOAT-NEGATIVE-INFINITY
+  #+abcl EXTENSIONS:DOUBLE-FLOAT-NEGATIVE-INFINITY
   #+allegro excl:*negative-infinity-double*
   #+ccl -1D++0
-  #+clasp ext:double-float-negative-infinity
-  #+cmucl extensions:double-float-negative-infinity
-  #+ecl ext:double-float-negative-infinity
-  #+mezzano mezzano.extensions:double-float-negative-infinity
-  #+mkcl mkcl:double-float-negative-infinity
-  #+sbcl sb-ext:double-float-negative-infinity
+  #+clasp EXT:DOUBLE-FLOAT-NEGATIVE-INFINITY
+  #+cmucl EXTENSIONS:DOUBLE-FLOAT-NEGATIVE-INFINITY
+  #+ecl EXT:DOUBLE-FLOAT-NEGATIVE-INFINITY
+  #+mezzano MEZZANO.EXTENSIONS:DOUBLE-FLOAT-NEGATIVE-INFINITY
+  #+mkcl MKCL:DOUBLE-FLOAT-NEGATIVE-INFINITY
+  #+sbcl SB-EXT:DOUBLE-FLOAT-NEGATIVE-INFINITY
   #+lispworks -1D++0
   #-(or abcl allegro ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
-  most-negative-double-float)
+  MOST-NEGATIVE-DOUBLE-FLOAT)
 
-(defconstant long-float-positive-infinity
+(defconstant LONG-FLOAT-POSITIVE-INFINITY
   #+ccl 1L++0
-  #+clasp ext:long-float-positive-infinity
-  #+cmucl extensions:long-float-positive-infinity
-  #+ecl ext:long-float-positive-infinity
-  #+mezzano mezzano.extensions:long-float-positive-infinity
-  #+mkcl ext:long-float-positive-infinity
-  #+sbcl sb-ext:long-float-positive-infinity
+  #+clasp EXT:LONG-FLOAT-POSITIVE-INFINITY
+  #+cmucl EXTENSIONS:LONG-FLOAT-POSITIVE-INFINITY
+  #+ecl EXT:LONG-FLOAT-POSITIVE-INFINITY
+  #+mezzano MEZZANO.EXTENSIONS:LONG-FLOAT-POSITIVE-INFINITY
+  #+mkcl EXT:LONG-FLOAT-POSITIVE-INFINITY
+  #+sbcl SB-EXT:LONG-FLOAT-POSITIVE-INFINITY
   #+lispworks 1L++0
   #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
-  most-positive-long-float)
+  MOST-POSITIVE-LONG-FLOAT)
 
-(defconstant long-float-negative-infinity
+(defconstant LONG-FLOAT-NEGATIVE-INFINITY
   #+ccl -1L++0
-  #+clasp ext:long-float-negative-infinity
-  #+cmucl extensions:long-float-negative-infinity
-  #+ecl ext:long-float-negative-infinity
-  #+mezzano mezzano.extensions:long-float-negative-infinity
-  #+mkcl ext:long-float-negative-infinity
-  #+sbcl sb-ext:long-float-negative-infinity
+  #+clasp EXT:LONG-FLOAT-NEGATIVE-INFINITY
+  #+cmucl EXTENSIONS:LONG-FLOAT-NEGATIVE-INFINITY
+  #+ecl EXT:LONG-FLOAT-NEGATIVE-INFINITY
+  #+mezzano MEZZANO.EXTENSIONS:LONG-FLOAT-NEGATIVE-INFINITY
+  #+mkcl EXT:LONG-FLOAT-NEGATIVE-INFINITY
+  #+sbcl SB-EXT:LONG-FLOAT-NEGATIVE-INFINITY
   #+lispworks -1L++0
   #-(or ccl clasp cmucl ecl mezzano mkcl sbcl lispworks)
-  most-negative-long-float)
+  MOST-NEGATIVE-LONG-FLOAT)
 
 (handler-case
     (progn
       (bits-short-float 0)
-      (defconstant short-float-nan
+      (defconstant SHORT-FLOAT-NAN
         (bits-short-float #b0111111000000000)))
   (error ()
-    (define-symbol-macro short-float-nan
+    (define-symbol-macro SHORT-FLOAT-NAN
         (bits-short-float #b0111111000000000))))
 
 (handler-case
     (progn
       (bits-single-float 0)
-      (defconstant single-float-nan
+      (defconstant SINGLE-FLOAT-NAN
         (bits-single-float #b01111111110000000000000000000000)))
   (error ()
-    (define-symbol-macro single-float-nan
+    (define-symbol-macro SINGLE-FLOAT-NAN
         (bits-single-float #b01111111110000000000000000000000))))
 
 (handler-case
     (progn
       (bits-double-float 0)
-      (defconstant double-float-nan
+      (defconstant DOUBLE-FLOAT-NAN
         (bits-double-float #b0111111111111000000000000000000000000000000000000000000000000000)))
   (error ()
-    (define-symbol-macro double-float-nan
+    (define-symbol-macro DOUBLE-FLOAT-NAN
         (bits-double-float #b0111111111111000000000000000000000000000000000000000000000000000))))
 
 (handler-case
     (progn
       (bits-long-float 0)
-      (defconstant long-float-nan
+      (defconstant LONG-FLOAT-NAN
         (bits-long-float #b01111111111111111000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)))
   (error ()
-    (define-symbol-macro long-float-nan
+    (define-symbol-macro LONG-FLOAT-NAN
         (bits-long-float #b01111111111111111000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000))))
 
