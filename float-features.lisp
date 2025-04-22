@@ -73,7 +73,7 @@
                 NIL ,@body)
            (apply #'ccl:set-fpu-mode ,previous))))
     #+clisp
-    (if (find :underflow)
+    (if (find :underflow traps)
         `(ext:without-floating-point-underflow
            ,@body)
         `(progn
