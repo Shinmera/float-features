@@ -7,8 +7,9 @@
   :homepage "https://github.com/Shinmera/float-features"
   :serial T
   :components ((:file "package")
+               (:file "infinity")
                (:file "float-features")
-               (:file "constants")
+               (:file "nan")
                (:file "documentation"))
   :in-order-to ((asdf:test-op (asdf:test-op :float-features-tests)))
   :depends-on (:trivial-features :documentation-utils))
