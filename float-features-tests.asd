@@ -5,7 +5,7 @@
   :maintainer "Yukari Hafner <shinmera@tymoon.eu>"
   :description "Tests for Float Features"
   :perform (asdf:test-op (op c) (uiop:symbol-call :parachute :test :float-features-tests))
-  :homepage "https://github.com/Shinmera/float-features"
+  :homepage "https://shinmera.com/project/float-features"
   :serial T
   :components ((:file "test-float-features"))
   :depends-on (:float-features :parachute))

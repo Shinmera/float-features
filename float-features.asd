@@ -4,7 +4,7 @@
   :author "Yukari Hafner <shinmera@tymoon.eu>"
   :maintainer "Yukari Hafner <shinmera@tymoon.eu>"
   :description "A portability library for IEEE float features not covered by the CL standard."
-  :homepage "https://github.com/Shinmera/float-features"
+  :homepage "https://shinmera.com/project/float-features"
   :serial T
   :components ((:file "package")
                (:file "infinity")
