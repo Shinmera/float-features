@@ -1,16 +1,4 @@
-## About Float-Features
-This is a wrapper library for IEEE floating point features not present in the Common Lisp standard.
+# This repository has [moved](https://shinmera.com/projects/float-features)!
+Due to Microsoft's continued enshittification of the platform this repository has been moved to [Codeberg](https://shinmera.com/projects/float-features) in August of 2025. It will not receive further updates or patches. **Issues and pull requests will not be looked at here either**, please submit your patches and issue tickets on Codeberg, or send them directly via good old email patches to [shirakumo@tymoon.eu](mailto:shirakumo@tymoon.eu).
 
-## Implementation Support
-The following implementations are currently partially or entirely supported:
-
-* abcl
-* allegro
-* ccl
-* clasp
-* cmucl
-* ecl
-* mezzano
-* mkcl
-* sbcl
-* lispworks
+Thanks.
